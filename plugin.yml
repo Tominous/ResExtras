@@ -1,0 +1,25 @@
+name: ResExtras
+main: net.tonkovich.resextras.Main
+version: 2.0.5
+author: Tonkovich
+depend: [Residence]
+permissions:
+    ResExtras.*:
+        description:  Allows all permissions from ResExtras.
+        children:
+            ResExtras.version: true
+            ResExtras.list: true
+            ResExtras.help: true
+    ResExtras.version:
+        description:  ResExtras Version permission.
+        default: true
+    ResExtras.list:
+        description:  Lists all the ResExtras Flags.
+        default: true   
+    ResExtras.help:
+        description:  Displays help menu.
+        default: true             
+commands:
+   resextras:
+      description: ResExtras menu.
+      usage: /<command>
