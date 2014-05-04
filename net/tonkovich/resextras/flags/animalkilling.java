@@ -1,5 +1,10 @@
 package net.tonkovich.resextras.flags;
 
+import net.t00thpick1.residence.api.ResidenceAPI;
+import net.t00thpick1.residence.api.areas.PermissionsArea;
+import net.t00thpick1.residence.utils.Utilities;
+import net.tonkovich.resextras.FlagManagerExtras;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Arrow;
@@ -11,9 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-
-import com.bekvon.bukkit.residence.Residence;
-import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 
 public class animalkilling implements Listener {
 	public Player cause;
@@ -33,18 +35,20 @@ public class animalkilling implements Listener {
 		} else {
 			cause = (Player) ((Arrow) damager).getShooter();
 		}
-		boolean resadmin = Residence.isResAdminOn(cause);
-		if (resadmin) {
-			return;
-		}
-		Entity entity = event.getEntity();
-		ClaimedResidence res = Residence.getResidenceManager().getByLoc(entity.getLocation());
 
-		if (res!=null && !res.getPermissions().playerHas(cause.getName().toString(), "animalkilling", true)) {
+		boolean resadmin = Utilities.isAdminMode(cause);
+		if (resadmin) {
+		    return;
+		}
+
+		Entity entity = event.getEntity();
+		PermissionsArea area = ResidenceAPI.getPermissionsAreaByLocation(entity.getLocation());
+
+		if (area!=null && !area.allowAction(cause.getName().toString(), FlagManagerExtras.ANIMALKILLING)) {
 			if ((entity instanceof Animals) || (entity instanceof IronGolem) || (entity instanceof Snowman)) {
 				cause.sendMessage(ChatColor.RED + "You cannot kill animals here!");
 				event.setCancelled(true);
 			}
-	}
+		}
 	}
 }

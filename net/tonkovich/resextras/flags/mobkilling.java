@@ -1,5 +1,10 @@
 package net.tonkovich.resextras.flags;
 
+import net.t00thpick1.residence.api.ResidenceAPI;
+import net.t00thpick1.residence.api.areas.PermissionsArea;
+import net.t00thpick1.residence.utils.Utilities;
+import net.tonkovich.resextras.FlagManagerExtras;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -9,9 +14,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-
-import com.bekvon.bukkit.residence.Residence;
-import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 
 public class mobkilling implements Listener {
 	public Player cause;
@@ -31,14 +33,14 @@ public class mobkilling implements Listener {
 		} else {
 			cause = (Player) ((Arrow) damager).getShooter();
 		}
-		boolean resadmin = Residence.isResAdminOn(cause);
+		boolean resadmin = Utilities.isAdminMode(cause);
 		if (resadmin) {
-			return;
+		    return;
 		}
 		Entity entity = event.getEntity();
-		ClaimedResidence res = Residence.getResidenceManager().getByLoc(entity.getLocation());
+		PermissionsArea area = ResidenceAPI.getPermissionsAreaByLocation(entity.getLocation());
 
-		if (res!=null && !res.getPermissions().playerHas(cause.getName().toString(), "mobkilling", true)) {
+		if (area!=null && !area.allowAction(cause.getName().toString(), FlagManagerExtras.MOBKILLING)) {
 			if (entity instanceof Monster) {
 				cause.sendMessage(ChatColor.RED + "You cannot kill mobs here!");
 				event.setCancelled(true);

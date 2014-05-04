@@ -1,12 +1,13 @@
 package net.tonkovich.resextras.flags;
 
+import net.t00thpick1.residence.api.ResidenceAPI;
+import net.t00thpick1.residence.api.areas.PermissionsArea;
+import net.tonkovich.resextras.FlagManagerExtras;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PigZapEvent;
-
-import com.bekvon.bukkit.residence.Residence;
-import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 
 public class pigzap implements Listener {
 
@@ -14,9 +15,9 @@ public class pigzap implements Listener {
 public void PiggyZap(PigZapEvent event){
     if(event.isCancelled())
         return;
-    ClaimedResidence res = Residence.getResidenceManager().getByLoc(event.getEntity().getLocation());
-    if(res!=null) {
-        if(!res.getPermissions().has("pigzap", true)) {
+    PermissionsArea area = ResidenceAPI.getPermissionsAreaByLocation(event.getEntity().getLocation());
+    if(area!=null) {
+        if(!area.allowAction(FlagManagerExtras.PIGZAP)) {
         		event.setCancelled(true);
         	}
         }

@@ -1,14 +1,16 @@
 package net.tonkovich.resextras.flags;
 
+import net.t00thpick1.residence.api.ResidenceAPI;
+import net.t00thpick1.residence.api.areas.PermissionsArea;
+import net.t00thpick1.residence.utils.Utilities;
+import net.tonkovich.resextras.FlagManagerExtras;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-
-import com.bekvon.bukkit.residence.Residence;
-import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 
 public class sprint implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -17,15 +19,15 @@ public class sprint implements Listener {
 	        return;
 		Player player = event.getPlayer();
 		String playername = player.getName();
-	    boolean resadmin = Residence.isResAdminOn(player);
+		boolean resadmin = Utilities.isAdminMode(player);
 		if (resadmin) {
 			return;
 		}
 	    if(!player.isSprinting() && (!player.isSneaking()))
 	    	return;
-	    ClaimedResidence res = Residence.getResidenceManager().getByLoc(event.getPlayer().getLocation());
-	    if(res!=null) {
-	        if(!res.getPermissions().playerHas(playername, "sprint", true) && player.isSprinting()) {
+	    PermissionsArea area = ResidenceAPI.getPermissionsAreaByLocation(player.getLocation());
+	    if(area!=null) {
+	        if(!area.allowAction(playername, FlagManagerExtras.SPRINT) && player.isSprinting()) {
 	            event.setCancelled(true);
 	            long currentTime = System.currentTimeMillis();
 	            if(currentTime%2000>=0 && currentTime%2000<=100){

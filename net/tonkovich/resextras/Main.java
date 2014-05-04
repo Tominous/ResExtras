@@ -1,7 +1,5 @@
 package net.tonkovich.resextras;
 
-import com.bekvon.bukkit.residence.protection.FlagPermissions;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -79,6 +77,14 @@ public class Main extends JavaPlugin implements CommandExecutor {
     public static final String LOG_HEADER = "[" + PLUGIN_NAME + "] ";
     
     private Logger log;   
+    
+    
+    @Override
+    public void onLoad()
+    {
+        FlagManagerExtras.initFlags();
+    }
+    
     //very long start up lolz
     @Override
     public void onEnable() {
@@ -98,62 +104,6 @@ public class Main extends JavaPlugin implements CommandExecutor {
             if(p.isEnabled()) {
                 logInfo("Enabled");
                 pm.enablePlugin(p);
-                FlagPermissions.addResidenceOnlyFlag("zombie");
-                FlagPermissions.addResidenceOnlyFlag("skeleton");
-                FlagPermissions.addResidenceOnlyFlag("creeperspawn");
-                FlagPermissions.addResidenceOnlyFlag("spider");
-                FlagPermissions.addResidenceOnlyFlag("cavespider");
-                FlagPermissions.addResidenceOnlyFlag("slime");
-                FlagPermissions.addResidenceOnlyFlag("ghast");
-                FlagPermissions.addResidenceOnlyFlag("blaze");
-                FlagPermissions.addResidenceOnlyFlag("magmacube");
-                FlagPermissions.addResidenceOnlyFlag("silverfish");
-                FlagPermissions.addResidenceOnlyFlag("snowgolem");
-                FlagPermissions.addResidenceOnlyFlag("irongolem");
-                FlagPermissions.addResidenceOnlyFlag("enderman");
-                FlagPermissions.addResidenceOnlyFlag("wolf");
-                FlagPermissions.addResidenceOnlyFlag("zombiepigmen");
-                FlagPermissions.addResidenceOnlyFlag("chicken");
-                FlagPermissions.addResidenceOnlyFlag("cow");
-                FlagPermissions.addResidenceOnlyFlag("mooshroom");
-                FlagPermissions.addResidenceOnlyFlag("ocelot");
-                FlagPermissions.addResidenceOnlyFlag("pig");
-                FlagPermissions.addResidenceOnlyFlag("sheep");
-                FlagPermissions.addResidenceOnlyFlag("squid");
-                FlagPermissions.addResidenceOnlyFlag("villager");
-                FlagPermissions.addResidenceOnlyFlag("bat");
-                FlagPermissions.addResidenceOnlyFlag("witch");
-                FlagPermissions.addResidenceOnlyFlag("witherspawn");
-                FlagPermissions.addResidenceOnlyFlag("melt");
-                FlagPermissions.addResidenceOnlyFlag("form");
-                FlagPermissions.addFlag("drops");
-                FlagPermissions.addFlag("pickup");
-                FlagPermissions.addFlag("animalkilling");
-                FlagPermissions.addFlag("villagerkilling");
-                FlagPermissions.addFlag("mobkilling");
-                FlagPermissions.addFlag("falldamage");
-                FlagPermissions.addFlag("enderpearl");
-                FlagPermissions.addFlag("commands");
-                FlagPermissions.addFlag("portal");
-                FlagPermissions.addFlag("vehicleprotect");
-                FlagPermissions.addResidenceOnlyFlag("lightning");
-                FlagPermissions.addResidenceOnlyFlag("grow");
-                FlagPermissions.addFlag("hunger");
-                FlagPermissions.addFlag("sprint");
-                FlagPermissions.addFlag("fishing");
-                FlagPermissions.addFlag("eggs");
-                FlagPermissions.addFlag("sneak");
-                FlagPermissions.addResidenceOnlyFlag("pigzap");
-                FlagPermissions.addFlag("slimesplit");
-                FlagPermissions.addFlag("shear");
-                FlagPermissions.addFlag("pigsaddle");
-                FlagPermissions.addFlag("trade");
-                FlagPermissions.addFlag("god");
-                FlagPermissions.addResidenceOnlyFlag("weather");
-                FlagPermissions.addResidenceOnlyFlag("day");
-                FlagPermissions.addResidenceOnlyFlag("night");
-                FlagPermissions.addResidenceOnlyFlag("blockdamage");
-                //FlagPermissions.addFlag("crystalprotect");
                 if(getConfig().getBoolean("Zombie", true)){
                 	pm.registerEvents(new zombie(), this);
                 }

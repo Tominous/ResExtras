@@ -1,62 +1,67 @@
 package net.tonkovich.resextras.flags;
 
+import net.t00thpick1.residence.api.areas.PermissionsArea;
+import net.t00thpick1.residence.api.areas.ResidenceArea;
+import net.t00thpick1.residence.api.events.PlayerChangedAreaEvent;
+import net.t00thpick1.residence.api.events.ResidenceAreaFlagsChangedEvent;
+import net.tonkovich.resextras.FlagManagerExtras;
+
 import org.bukkit.WeatherType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
-import com.bekvon.bukkit.residence.event.ResidenceEnterEvent;
-import com.bekvon.bukkit.residence.event.ResidenceFlagChangeEvent;
-import com.bekvon.bukkit.residence.event.ResidenceLeaveEvent;
-import com.bekvon.bukkit.residence.protection.ClaimedResidence;
-import com.bekvon.bukkit.residence.protection.FlagPermissions.FlagState;
-
 public class weather implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
-    public void onResidenceEvent(ResidenceEnterEvent event) {
+    public void onResidenceEvent(PlayerChangedAreaEvent event) {
    	 	Player player = event.getPlayer();
-   	 	ClaimedResidence res = event.getResidence();
-	    if(res!=null) {
-	    if(res.getPermissions().isSet("weather")){
-	        if(res.getPermissions().has("weather", true)) {
+   	 	PermissionsArea areaTo = event.getTo();
+	    if(areaTo!=null) {
+	    if(areaTo.getAreaFlags().containsKey(FlagManagerExtras.WEATHER))
+	    {
+	         if(areaTo.getAreaFlags().get(FlagManagerExtras.WEATHER) == true) {
 	            player.setPlayerWeather(WeatherType.DOWNFALL);
 	            return;
 	        }
-	        if(!res.getPermissions().has("weather", false)) {
+	        if(areaTo.getAreaFlags().get(FlagManagerExtras.WEATHER) == false) {
 	            player.setPlayerWeather(WeatherType.CLEAR);
 	            return;
 	        }
 	    }
 	    }
+	    
+	    PermissionsArea areaFrom = event.getFrom();
+	    if (areaFrom.getAreaFlags().containsKey(FlagManagerExtras.WEATHER))
+	    	player.resetPlayerWeather();
     }
+
 	@EventHandler(priority = EventPriority.NORMAL)
-    public void onResidenceEvent(ResidenceLeaveEvent event) {
-   	 	ClaimedResidence res = event.getResidence();
-	    if(res.getPermissions().isSet("weather")){
-   	 	Player player = event.getPlayer();
-	    player.resetPlayerWeather();
-	    }
-	}
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onResidenceFlag(ResidenceFlagChangeEvent event) {
-		if (event.getFlag().equalsIgnoreCase("weather")) {
-			ClaimedResidence res = event.getResidence();
-			if (event.getNewState() == FlagState.TRUE) {
-				for (Player player: res.getPlayersInResidence()) {
-					player.setPlayerWeather(WeatherType.DOWNFALL);
-				}
-			}
-			if (event.getNewState() == FlagState.FALSE) {
-				for (Player player: res.getPlayersInResidence()) {
-					player.setPlayerWeather(WeatherType.CLEAR);
-				}
-			}
-			if (event.getNewState() == FlagState.NEITHER) {
-				for (Player player: res.getPlayersInResidence()) {
+	public void onResidenceFlag(ResidenceAreaFlagsChangedEvent event) {
+   	 		ResidenceArea area = event.getResidenceArea();
+			 	 		
+   	 		if (area != null && area.getAreaFlags().containsKey(FlagManagerExtras.WEATHER))
+   	 		{
+   	 			if (area.getAreaFlags().get(FlagManagerExtras.WEATHER) == true)
+   	 			{
+   					for (Player player: area.getPlayersInResidence()) {
+   						player.setPlayerWeather(WeatherType.DOWNFALL);
+   					}
+   					return;
+   	 			}
+
+   	 			if (area.getAreaFlags().get(FlagManagerExtras.WEATHER) == false)
+   	 			{
+   					for (Player player: area.getPlayersInResidence()) {
+   						player.setPlayerWeather(WeatherType.CLEAR);
+   					}
+   					return;
+   	 			}
+   	 			
+				for (Player player: area.getPlayersInResidence()) {
 					player.resetPlayerWeather();
 				}
-		}
+   	 		}
 	}
 }
-}
+   	 				
