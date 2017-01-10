@@ -331,17 +331,6 @@ public class Main extends JavaPlugin implements CommandExecutor {
 }
     //very long config
     //Going to make this shorter but I'm too lazy
-    //To be honest I just made it like that way since it was in my other plugin so I just copy and pasta'd I'm really lazy :3
-    //and I like making little stories in my code...I'm insane o.o
-    /*I love ramen since its like the only thing I actually know how to make. I used to make
-     * pancakes but I forgot how to make them which kinda pisses me off. Oh by the way I'm
-     * only 17 :P. Its nice to know that someone has to read this (I think) since one of my friends
-     * is on the DevBukkit team so its nice to meet you :D. You can even message me on Bukkit(Tonkovich) 
-     * just so I know you read this. Well thats all I really know what to type since I kinda just typed
-     * random stuff. I have a pokeball :3
-     * 
-     * Dafuq did you just read o.O
-     */
     public void loadDefaults(){
     	FileConfiguration configG = getConfig();
     	File configFile = new File("plugins/ResExtras/config.yml");
