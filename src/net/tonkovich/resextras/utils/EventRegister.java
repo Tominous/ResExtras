@@ -28,9 +28,6 @@ public class EventRegister {
         if(main.getConfig().getBoolean("chicken", true)){
             pm.registerEvents(new chicken(), main);
         }
-        if(main.getConfig().getBoolean("commands", true)){
-            pm.registerEvents(new commands(), main);
-        }
         if(main.getConfig().getBoolean("cow", true)){
             pm.registerEvents(new cow(), main);
         }
@@ -78,9 +75,6 @@ public class EventRegister {
         }
         if(main.getConfig().getBoolean("portal", true)){
             pm.registerEvents(new portal(), main);
-        }
-        if(main.getConfig().getBoolean("shear", true)){
-            pm.registerEvents(new shear(), main);
         }
         if(main.getConfig().getBoolean("sheep", true)){
             pm.registerEvents(new sheep(), main);
