@@ -1,24 +1,24 @@
 package net.tonkovich.resextras.flags;
 
-import net.t00thpick1.residence.api.ResidenceAPI;
-import net.t00thpick1.residence.api.areas.PermissionsArea;
-import net.tonkovich.resextras.FlagManagerExtras;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
+import com.bekvon.bukkit.residence.Residence;
+import com.bekvon.bukkit.residence.protection.ClaimedResidence;
+
 public class blockdamage implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void BlockDamage(EntityExplodeEvent event) {
-	    if(event.isCancelled())
-	        return;
-	    PermissionsArea area = ResidenceAPI.getPermissionsAreaByLocation(event.getLocation());
-	    if(area!=null) {
-	        if(!area.allowAction(FlagManagerExtras.BLOCKDAMAGE)) {
-	            event.setCancelled(true);
-	        }
-	    }
-}
+		Residence residence = new Residence();
+		if(event.isCancelled())
+			return;
+		ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getLocation());
+		if(res!=null) {
+			if(!res.getPermissions().has("blockdamage", true)) {
+				event.setCancelled(true);
+			}
+		}
+	}
 }

@@ -1,10 +1,5 @@
 package net.tonkovich.resextras.flags;
 
-import net.t00thpick1.residence.api.ResidenceAPI;
-import net.t00thpick1.residence.api.areas.PermissionsArea;
-import net.t00thpick1.residence.utils.Utilities;
-import net.tonkovich.resextras.FlagManagerExtras;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -14,24 +9,28 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
+import com.bekvon.bukkit.residence.Residence;
+import com.bekvon.bukkit.residence.protection.ClaimedResidence;
+
 public class pigsaddle implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void PiggySaddle(PlayerInteractEntityEvent event){
-	    if(event.isCancelled())
-	        return;
-	    Entity pig = event.getRightClicked();
-	    Player player = event.getPlayer();
-	    boolean resadmin = Utilities.isAdminMode(player);
-	    PermissionsArea area = ResidenceAPI.getPermissionsAreaByLocation(player.getLocation());
+		if(event.isCancelled())
+			return;
+		Entity pig = event.getRightClicked();
+		Player player = event.getPlayer();
+		Residence residence = new Residence();
+		ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getPlayer().getLocation());
+		boolean resadmin = residence.isResAdminOn(player);
 		String playername = player.getName();
-	    if(area!=null) {
-	        if(!area.allowAction(playername, FlagManagerExtras.PIGSADDLE) && !resadmin) {
-	            if(pig.getType() == EntityType.PIG){
-	        	event.setCancelled(true);
-	        	event.getPlayer().sendMessage(derpa + "You cannot derp here!");
-	        }
-	        }
-	}
+		if(res!=null) {
+			if(!res.getPermissions().playerHas(playername, "pigsaddle", true)&&!resadmin) {
+				if(pig.getType() == EntityType.PIG){
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(derpa + "You cannot use a saddle here!");
+				}
+			}
+		}
 	}
 	ChatColor derpa = ChatColor.RED;
 }

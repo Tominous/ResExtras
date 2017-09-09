@@ -1,7 +1,8 @@
 package net.tonkovich.resextras;
 
+import com.bekvon.bukkit.residence.protection.FlagPermissions;
+
 import java.io.File;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,8 +17,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import net.tonkovich.resextras.Metrics;
-import net.tonkovich.resextras.flags.animalkilling;
 import net.tonkovich.resextras.flags.bat;
 import net.tonkovich.resextras.flags.blaze;
 import net.tonkovich.resextras.flags.blockdamage;
@@ -25,14 +24,10 @@ import net.tonkovich.resextras.flags.cavespider;
 import net.tonkovich.resextras.flags.chicken;
 import net.tonkovich.resextras.flags.commands;
 import net.tonkovich.resextras.flags.cow;
-import net.tonkovich.resextras.flags.creeperspawn;
-import net.tonkovich.resextras.flags.drops;
 import net.tonkovich.resextras.flags.eggs;
 import net.tonkovich.resextras.flags.enderman;
-import net.tonkovich.resextras.flags.enderpearl;
 import net.tonkovich.resextras.flags.falldamage;
 import net.tonkovich.resextras.flags.fishing;
-import net.tonkovich.resextras.flags.form;
 import net.tonkovich.resextras.flags.ghast;
 import net.tonkovich.resextras.flags.god;
 import net.tonkovich.resextras.flags.grow;
@@ -40,11 +35,8 @@ import net.tonkovich.resextras.flags.hunger;
 import net.tonkovich.resextras.flags.irongolem;
 import net.tonkovich.resextras.flags.lightning;
 import net.tonkovich.resextras.flags.magmacube;
-import net.tonkovich.resextras.flags.melt;
-import net.tonkovich.resextras.flags.mobkilling;
 import net.tonkovich.resextras.flags.mooshroom;
 import net.tonkovich.resextras.flags.ocelot;
-import net.tonkovich.resextras.flags.pickup;
 import net.tonkovich.resextras.flags.pig;
 import net.tonkovich.resextras.flags.pigsaddle;
 import net.tonkovich.resextras.flags.pigzap;
@@ -60,14 +52,8 @@ import net.tonkovich.resextras.flags.snowgolem;
 import net.tonkovich.resextras.flags.spider;
 import net.tonkovich.resextras.flags.sprint;
 import net.tonkovich.resextras.flags.squid;
-import net.tonkovich.resextras.flags.time;
-import net.tonkovich.resextras.flags.trade;
-import net.tonkovich.resextras.flags.vehicleprotect;
 import net.tonkovich.resextras.flags.villager;
-import net.tonkovich.resextras.flags.villagerkilling;
-import net.tonkovich.resextras.flags.weather;
 import net.tonkovich.resextras.flags.witch;
-import net.tonkovich.resextras.flags.witherspawn;
 import net.tonkovich.resextras.flags.wolf;
 import net.tonkovich.resextras.flags.zombie;
 import net.tonkovich.resextras.flags.zombiepigmen;
@@ -80,23 +66,13 @@ public class Main extends JavaPlugin implements CommandExecutor {
     
     
     @Override
-    public void onLoad()
-    {
-        FlagManagerExtras.initFlags();
-    }
-    
-    //very long start up lolz
+    public void onLoad() {}
+
     @Override
     public void onEnable() {
 
-        log = Logger.getLogger("Minecraft");           
-        
-        try {
-            Metrics metrics = new Metrics(this);
-            metrics.start();
-        } catch (IOException e) {
-            // Failed to submit the stats :-(
-        }
+        log = Logger.getLogger("Minecraft");
+
         loadDefaults();
         PluginManager pm = getServer().getPluginManager();
         Plugin p = pm.getPlugin("Residence");
@@ -104,14 +80,50 @@ public class Main extends JavaPlugin implements CommandExecutor {
             if(p.isEnabled()) {
                 logInfo("Enabled");
                 pm.enablePlugin(p);
+				FlagPermissions.addFlag("zombie");
+				FlagPermissions.addFlag("skeleton");
+				FlagPermissions.addFlag("spider");
+				FlagPermissions.addFlag("cavespider");
+				FlagPermissions.addFlag("slime");
+				FlagPermissions.addFlag("ghast");
+				FlagPermissions.addFlag("blaze");
+				FlagPermissions.addFlag("magmacube");
+				FlagPermissions.addFlag("silverfish");
+				FlagPermissions.addFlag("snowgolem");
+				FlagPermissions.addFlag("irongolem");
+				FlagPermissions.addFlag("enderman");
+				FlagPermissions.addFlag("wolf");
+				FlagPermissions.addFlag("zombiepigmen");
+				FlagPermissions.addFlag("chicken");
+				FlagPermissions.addFlag("cow");
+				FlagPermissions.addFlag("mooshroom");
+				FlagPermissions.addFlag("ocelot");
+				FlagPermissions.addFlag("pig");
+				FlagPermissions.addFlag("sheep");
+				FlagPermissions.addFlag("squid");
+				FlagPermissions.addFlag("villager");
+				FlagPermissions.addFlag("bat");
+				FlagPermissions.addFlag("witch");
+				FlagPermissions.addFlag("falldamage");
+				FlagPermissions.addFlag("commands");
+				FlagPermissions.addFlag("portal");
+				FlagPermissions.addFlag("lightning");
+				FlagPermissions.addFlag("grow");
+				FlagPermissions.addFlag("hunger");
+				FlagPermissions.addFlag("sprint");
+				FlagPermissions.addFlag("fishing");
+				FlagPermissions.addFlag("eggs");
+				FlagPermissions.addFlag("sneak");
+				FlagPermissions.addFlag("pigzap");
+				FlagPermissions.addFlag("slimesplit");
+				FlagPermissions.addFlag("shear");
+				FlagPermissions.addFlag("pigsaddle");
+				FlagPermissions.addFlag("god");
                 if(getConfig().getBoolean("Zombie", true)){
                 	pm.registerEvents(new zombie(), this);
                 }
                 if(getConfig().getBoolean("Skeleton", true)){
                 	pm.registerEvents(new skeleton(), this);
-                }
-                if(getConfig().getBoolean("Creeperspawn", true)){
-                	pm.registerEvents(new creeperspawn(), this);
                 }
                 if(getConfig().getBoolean("Spider", true)){
                 	pm.registerEvents(new spider(), this);
@@ -179,44 +191,14 @@ public class Main extends JavaPlugin implements CommandExecutor {
                 if(getConfig().getBoolean("Witch", true)){
                 	pm.registerEvents(new witch(), this);
                 }
-                if(getConfig().getBoolean("Witherspawn", true)){
-                	pm.registerEvents(new witherspawn(), this);
-                }
-                if(getConfig().getBoolean("Melt", true)){
-                	pm.registerEvents(new melt(), this);
-                }
-                if(getConfig().getBoolean("Form", true)){
-                	pm.registerEvents(new form(), this);
-                }
-                if(getConfig().getBoolean("Animalkilling", true)){
-                	pm.registerEvents(new animalkilling(), this);
-                }
-                if(getConfig().getBoolean("Mobkilling", true)){
-                	pm.registerEvents(new mobkilling(), this);
-                }
-                if(getConfig().getBoolean("Drops", true)){
-                	pm.registerEvents(new drops(), this);
-                }
-                if(getConfig().getBoolean("Pickup", true)){
-                	pm.registerEvents(new pickup(), this);
-                }
                 if(getConfig().getBoolean("Commands", true)){
                 	pm.registerEvents(new commands(), this);
-                }
-                if(getConfig().getBoolean("Enderpearl", true)){
-                	pm.registerEvents(new enderpearl(), this);
                 }
                 if(getConfig().getBoolean("Falldamage", true)){
                 	pm.registerEvents(new falldamage(), this);
                 }
                 if(getConfig().getBoolean("Portal", true)){
                 	pm.registerEvents(new portal(), this);
-                }
-                if(getConfig().getBoolean("Villagerkilling", true)){
-                	pm.registerEvents(new villagerkilling(), this);
-                }
-                if(getConfig().getBoolean("Vehicleprotect", true)){
-                	pm.registerEvents(new vehicleprotect(), this);
                 }
                 if(getConfig().getBoolean("Lightning", true)){
                 	pm.registerEvents(new lightning(), this);
@@ -251,24 +233,12 @@ public class Main extends JavaPlugin implements CommandExecutor {
                 if(getConfig().getBoolean("Pigsaddle", true)){
                 	pm.registerEvents(new pigsaddle(), this);
                 }
-                if(getConfig().getBoolean("Trade", true)){
-                	pm.registerEvents(new trade(), this);
-                }
                 if(getConfig().getBoolean("God", true)){
                 	pm.registerEvents(new god(), this);
-                }
-                if(getConfig().getBoolean("Weather", true)){
-                	pm.registerEvents(new weather(), this);
-                }
-                if(getConfig().getBoolean("Time", true)){
-                	pm.registerEvents(new time(), this);
                 }
                 if(getConfig().getBoolean("BlockDamage", true)){
                 	pm.registerEvents(new blockdamage(), this);
                 }
-                /*if(getConfig().getBoolean("CrystalProtect", true)){
-                	pm.registerEvents(new crystalprotect(), this);
-                }*/
             }
         }
         else {
@@ -284,9 +254,6 @@ public class Main extends JavaPlugin implements CommandExecutor {
         log.log(Level.INFO,String.format("%s %s",LOG_HEADER,_message));
     }
 
-    public void logError(String _message) {
-        log.log(Level.SEVERE,String.format("%s %s",LOG_HEADER,_message));
-    }
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
     	if (sender instanceof Player) {
@@ -311,7 +278,9 @@ public class Main extends JavaPlugin implements CommandExecutor {
 					if(args[0].equalsIgnoreCase("list")){
 						if (sender.hasPermission("ResExtras.list")){
 							sender.sendMessage(ChatColor.BLUE + "[ResExtras]" + ChatColor.GREEN + " Flags");
-							sender.sendMessage(ChatColor.WHITE + " Zombie, Skeleton, Spider, Creeperspawn, Blaze, Cavespider, Ghast, Slime, Magmacube, Silverfish, Snowgolem, Irongolem, Enderman, Zombiepigmen, Chicken, Cow, Mooshroom, Ocelot, Pig, Sheep, Squid, Villager, Wolf, Bat, Witherspawn, Witch, Form, Melt, Commands, FallDamage, Portal, Enderperal, Mobkilling, AnimalKilling, VillagerKilling, Drops, Pickup, VehicleProtect, Lightning, Grow, Hunger, Sprint, Fishing, Eggs, Sneak, PigZap, SlimeSplit, Shear, PigSaddle, Trade, God, Weather, Time, BlockDamage ");
+							sender.sendMessage(ChatColor.WHITE + " Zombie, Skeleton, Spider, Blaze, Cavespider, Ghast, Slime, Magmacube, Silverfish, Snowgolem, " +
+									"Irongolem, Enderman, Zombiepigmen, Chicken, Cow, Mooshroom, Ocelot, Pig, Sheep, Squid, Villager, Wolf, Bat, Witch, Commands, " +
+									"FallDamage, Portal, Lightning, Grow, Hunger, Sprint, Fishing, Eggs, Sneak, PigZap, SlimeSplit, Shear, PigSaddle, God, BlockDamage ");
 					}
 				}
 					if(args[0].equalsIgnoreCase("help")){
@@ -329,289 +298,139 @@ public class Main extends JavaPlugin implements CommandExecutor {
     }
 		return true;
 }
-    //very long config
-    //Going to make this shorter but I'm too lazy
+    // Generates config, sorta unnecessary
     public void loadDefaults(){
     	FileConfiguration configG = getConfig();
     	File configFile = new File("plugins/ResExtras/config.yml");
     	config = YamlConfiguration.loadConfiguration(configFile);
         configG.options().header("This completely disables parts of ResExtras increasing efficiency.");
-    	if(config.contains("Zombie")){
+    	if(!config.contains("Zombie")){
+			getConfig().addDefault("Zombie", true);
     	}
-    	else {
-        	getConfig().addDefault("Zombie", true);
+    	if(!config.contains("Skeleton")){
+			getConfig().addDefault("Skeleton", true);
     	}
-    	if(config.contains("Skeleton")){
+    	if(!config.contains("Spider")){
+			getConfig().addDefault("Spider", true);
     	}
-    	else {
-        	getConfig().addDefault("Skeleton", true);
+    	if(!config.contains("Blaze")){
+			getConfig().addDefault("Blaze", true);
     	}
-    	if(config.contains("Spider")){
+    	if(!config.contains("Cavespider")){
+			getConfig().addDefault("Cavespider", true);
     	}
-    	else {
-        	getConfig().addDefault("Spider", true);
+    	if(!config.contains("Ghast")){
+			getConfig().addDefault("Ghast", true);
     	}
-    	if(config.contains("Creeperspawn")){
+    	if(!config.contains("Slime")){
+			getConfig().addDefault("Slime", true);
     	}
-    	else {
-        	getConfig().addDefault("Creeperspawn", true);
+    	if(!config.contains("Magmacube")){
+			getConfig().addDefault("Magmacube", true);
     	}
-    	if(config.contains("Blaze")){
+    	if(!config.contains("Silverfish")){
+			getConfig().addDefault("Silverfish", true);
     	}
-    	else {
-        	getConfig().addDefault("Blaze", true);
+    	if(!config.contains("Snowgolem")){
+			getConfig().addDefault("Snowgolem", true);
     	}
-    	if(config.contains("Cavespider")){
+    	if(!config.contains("Irongolem")){
+			getConfig().addDefault("Irongolem", true);
     	}
-    	else {
-        	getConfig().addDefault("Cavespider", true);
+    	if(!config.contains("Enderman")){
+			getConfig().addDefault("Enderman", true);
     	}
-    	if(config.contains("Ghast")){
+    	if(!config.contains("Zombiepigmen")){
+			getConfig().addDefault("Zombiepigmen", true);
     	}
-    	else {
-        	getConfig().addDefault("Ghast", true);
+    	if(!config.contains("Chicken")){
+			getConfig().addDefault("Chicken", true);
     	}
-    	if(config.contains("Slime")){
+    	if(!config.contains("Cow")){
+			getConfig().addDefault("Cow", true);
     	}
-    	else {
-        	getConfig().addDefault("Slime", true);
+    	if(!config.contains("Mooshroom")){
+			getConfig().addDefault("Mooshroom", true);
     	}
-    	if(config.contains("Magmacube")){
+    	if(!config.contains("Ocelot")){
+			getConfig().addDefault("Ocelot", true);
     	}
-    	else {
-        	getConfig().addDefault("Magmacube", true);
+    	if(!config.contains("Pig")){
+			getConfig().addDefault("Pig", true);
     	}
-    	if(config.contains("Silverfish")){
+    	if(!config.contains("Sheep")){
+			getConfig().addDefault("Sheep", true);
     	}
-    	else {
-        	getConfig().addDefault("Silverfish", true);
+    	if(!config.contains("Squid")){
+			getConfig().addDefault("Squid", true);
     	}
-    	if(config.contains("Snowgolem")){
+    	if(!config.contains("Villager")){
+			getConfig().addDefault("Villager", true);
     	}
-    	else {
-        	getConfig().addDefault("Snowgolem", true);
+    	if(!config.contains("Wolf")){
+			getConfig().addDefault("Wolf", true);
     	}
-    	if(config.contains("Irongolem")){
+    	if(!config.contains("Bat")){
+			getConfig().addDefault("Bat", true);
     	}
-    	else {
-        	getConfig().addDefault("Irongolem", true);
+    	if(!config.contains("Witch")){
+			getConfig().addDefault("Witch", true);
     	}
-    	if(config.contains("Enderman")){
+    	if(!config.contains("Commands")){
+			getConfig().addDefault("Commands", true);
     	}
-    	else {
-        	getConfig().addDefault("Enderman", true);
+    	if(!config.contains("Falldamage")){
+			getConfig().addDefault("Falldamage", true);
     	}
-    	if(config.contains("Zombiepigmen")){
+    	if(!config.contains("Portal")){
+			getConfig().addDefault("Portal", true);
     	}
-    	else {
-        	getConfig().addDefault("Zombiepigmen", true);
+    	if(!config.contains("Pickup")){
+			getConfig().addDefault("Pickup", true);
     	}
-    	if(config.contains("Chicken")){
+    	if(!config.contains("Lightning")){
+			getConfig().addDefault("Lightning", true);
     	}
-    	else {
-        	getConfig().addDefault("Chicken", true);
+    	if(!config.contains("Grow")){
+			getConfig().addDefault("Grow", true);
     	}
-    	if(config.contains("Cow")){
+    	if(!config.contains("Hunger")){
+			getConfig().addDefault("Hunger", true);
     	}
-    	else {
-        	getConfig().addDefault("Cow", true);
+    	if(!config.contains("Sprint")){
+			getConfig().addDefault("Sprint", true);
     	}
-    	if(config.contains("Mooshroom")){
+    	if(!config.contains("Fishing")){
+			getConfig().addDefault("Fishing", true);
     	}
-    	else {
-        	getConfig().addDefault("Mooshroom", true);
+    	if(!config.contains("Eggs")){
+			getConfig().addDefault("Eggs", true);
     	}
-    	if(config.contains("Ocelot")){
+    	if(!config.contains("Sneak")){
+			getConfig().addDefault("Sneak", true);
     	}
-    	else {
-        	getConfig().addDefault("Ocelot", true);
+    	if(!config.contains("Pigzap")){
+			getConfig().addDefault("Pigzap", true);
     	}
-    	if(config.contains("Pig")){
+    	if(!config.contains("Slimesplit")){
+			getConfig().addDefault("Slimesplit", true);
     	}
-    	else {
-        	getConfig().addDefault("Pig", true);
+    	if(!config.contains("Shear")){
+			getConfig().addDefault("Shear", true);
     	}
-    	if(config.contains("Sheep")){
+    	if(!config.contains("Pigsaddle")){
+			getConfig().addDefault("Pigsaddle", true);
     	}
-    	else {
-        	getConfig().addDefault("Sheep", true);
+    	if(!config.contains("Trade")){
+			getConfig().addDefault("Trade", true);
     	}
-    	if(config.contains("Squid")){
+    	if(!config.contains("God")){
+			getConfig().addDefault("God", true);
     	}
-    	else {
-        	getConfig().addDefault("Squid", true);
+    	if(!config.contains("BlockDamage")){
+			getConfig().addDefault("BlockDamage", true);
     	}
-    	if(config.contains("Villager")){
-    	}
-    	else {
-        	getConfig().addDefault("Villager", true);
-    	}
-    	if(config.contains("Wolf")){
-    	}
-    	else {
-        	getConfig().addDefault("Wolf", true);
-    	}
-    	if(config.contains("Bat")){
-    	}
-    	else {
-        	getConfig().addDefault("Bat", true);
-    	}
-    	if(config.contains("Witherspawn")){
-    	}
-    	else {
-        	getConfig().addDefault("Witherspawn", true);
-    	}
-    	if(config.contains("Witch")){
-    	}
-    	else {
-        	getConfig().addDefault("Witch", true);
-    	}
-    	if(config.contains("Form")){
-    	}
-    	else {
-        	getConfig().addDefault("Form", true);
-    	}
-    	if(config.contains("Melt")){
-    	}
-    	else {
-        	getConfig().addDefault("Melt", true);
-    	}
-    	if(config.contains("Commands")){
-    	}
-    	else {
-        	getConfig().addDefault("Commands", true);
-    	}
-    	if(config.contains("Falldamage")){
-    	}
-    	else {
-        	getConfig().addDefault("Falldamage", true);
-    	}
-    	if(config.contains("Portal")){
-    	}
-    	else {
-        	getConfig().addDefault("Portal", true);
-    	}
-    	if(config.contains("Enderpearl")){
-    	}
-    	else {
-        	getConfig().addDefault("Enderpearl", true);
-    	}
-    	if(config.contains("Mobkilling")){
-    	}
-    	else {
-        	getConfig().addDefault("Mobkilling", true);
-    	}
-    	if(config.contains("Animalkilling")){
-    	}
-    	else {
-        	getConfig().addDefault("Animalkilling", true);
-    	}
-    	if(config.contains("Villagerkilling")){
-    	}
-    	else {
-        	getConfig().addDefault("Villagerkilling", true);
-    	}
-    	if(config.contains("Drops")){
-    	}
-    	else {
-        	getConfig().addDefault("Drops", true);
-    	}
-    	if(config.contains("Pickup")){
-    	}
-    	else {
-        	getConfig().addDefault("Pickup", true);
-    	}
-    	if(config.contains("Vehicleprotect")){
-    	}
-    	else {
-        	getConfig().addDefault("Vehicleprotect", true);
-    	}
-    	if(config.contains("Lightning")){
-    	}
-    	else {
-        	getConfig().addDefault("Lightning", true);
-    	}
-    	if(config.contains("Grow")){
-    	}
-    	else {
-        	getConfig().addDefault("Grow", true);
-    	}
-    	if(config.contains("Hunger")){
-    	}
-    	else {
-        	getConfig().addDefault("Hunger", true);
-    	}
-    	if(config.contains("Sprint")){
-    	}
-    	else {
-        	getConfig().addDefault("Sprint", true);
-    	}
-    	if(config.contains("Fishing")){
-    	}
-    	else {
-        	getConfig().addDefault("Fishing", true);
-    	}
-    	if(config.contains("Eggs")){
-    	}
-    	else {
-        	getConfig().addDefault("Eggs", true);
-    	}
-    	if(config.contains("Sneak")){
-    	}
-    	else {
-        	getConfig().addDefault("Sneak", true);
-    	}
-    	if(config.contains("Pigzap")){
-    	}
-    	else {
-        	getConfig().addDefault("Pigzap", true);
-    	}
-    	if(config.contains("Slimesplit")){
-    	}
-    	else {
-        	getConfig().addDefault("Slimesplit", true);
-    	}
-    	if(config.contains("Shear")){
-    	}
-    	else {
-        	getConfig().addDefault("Shear", true);
-    	}
-    	if(config.contains("Pigsaddle")){
-    	}
-    	else {
-        	getConfig().addDefault("Pigsaddle", true);
-    	}
-    	if(config.contains("Trade")){
-    	}
-    	else {
-        	getConfig().addDefault("Trade", true);
-    	}
-    	if(config.contains("God")){
-    	}
-    	else {
-        	getConfig().addDefault("God", true);
-    	}
-    	if(config.contains("Time")){
-    	}
-    	else {
-        	getConfig().addDefault("Time", true);
-    	}
-    	if(config.contains("Weather")){
-    	}
-    	else {
-        	getConfig().addDefault("Weather", true);
-    	}
-    	if(config.contains("BlockDamage")){
-    	}
-    	else {
-        	getConfig().addDefault("BlockDamage", true);
-    	}
-    	/*if(config.contains("CrystalProtect")){
-    	}
-    	else {
-        	getConfig().addDefault("CrystalProtect", true);
-    	}*/
-    	configG.options().copyDefaults(true);
+    	config.options().copyDefaults(true);
     	saveConfig();
     }
     public Configuration config;

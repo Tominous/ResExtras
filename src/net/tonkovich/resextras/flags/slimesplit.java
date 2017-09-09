@@ -1,24 +1,24 @@
 package net.tonkovich.resextras.flags;
 
-import net.t00thpick1.residence.api.ResidenceAPI;
-import net.t00thpick1.residence.api.areas.PermissionsArea;
-import net.tonkovich.resextras.FlagManagerExtras;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.SlimeSplitEvent;
 
+import com.bekvon.bukkit.residence.Residence;
+import com.bekvon.bukkit.residence.protection.ClaimedResidence;
+
 public class slimesplit implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void SlimeSplit(SlimeSplitEvent event){
-	    if(event.isCancelled())
-	        return;
-	    PermissionsArea area = ResidenceAPI.getPermissionsAreaByLocation(event.getEntity().getLocation());
-	    if(area!=null) {
-	        if(!area.allowAction(FlagManagerExtras.SLIMESPLIT)) {
-	        		event.setCancelled(true);
-	        	}
-	        }
-	    }
+		if(event.isCancelled())
+			return;
+		Residence residence = new Residence();
+		ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getEntity().getLocation());
+		if(res!=null) {
+			if(!res.getPermissions().has("slimesplit", true)) {
+				event.setCancelled(true);
+			}
+		}
+	}
 }
