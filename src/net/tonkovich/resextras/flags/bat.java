@@ -15,13 +15,13 @@ public class bat implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Bat(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Bat)
 		{
-			if (FlagPermissions.has("bat", true))
+			if (fp.has("bat", true))
 				return;
 			event.setCancelled(true);
 		}

@@ -15,13 +15,13 @@ public class ocelot implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Ocelot(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Ocelot)
 		{
-			if (FlagPermissions.has("ocelot", true))
+			if (fp.has("ocelot", true))
 				return;
 			event.setCancelled(true);
 		}

@@ -31,11 +31,20 @@ public class EventRegister {
         if(main.getConfig().getBoolean("cow", true)){
             pm.registerEvents(new cow(), main);
         }
+        if(main.getConfig().getBoolean("donkey", true)){
+            pm.registerEvents(new donkey(), main);
+        }
         if(main.getConfig().getBoolean("eggs", true)){
             pm.registerEvents(new eggs(), main);
         }
+        if(main.getConfig().getBoolean("elderguardian", true)){
+            pm.registerEvents(new elderguardian(), main);
+        }
         if(main.getConfig().getBoolean("enderman", true)){
             pm.registerEvents(new enderman(), main);
+        }
+        if(main.getConfig().getBoolean("endermite", true)){
+            pm.registerEvents(new endermite(), main);
         }
         if(main.getConfig().getBoolean("fishing", true)){
             pm.registerEvents(new fishing(), main);
@@ -46,6 +55,9 @@ public class EventRegister {
         if(main.getConfig().getBoolean("god", true)){
             pm.registerEvents(new god(), main);
         }
+        if(main.getConfig().getBoolean("horse", true)){
+            pm.registerEvents(new horse(), main);
+        }
         if(main.getConfig().getBoolean("hunger", true)){
             pm.registerEvents(new hunger(), main);
         }
@@ -55,14 +67,23 @@ public class EventRegister {
         if(main.getConfig().getBoolean("lightning", true)){
             pm.registerEvents(new lightning(), main);
         }
+        if(main.getConfig().getBoolean("llama", true)){
+            pm.registerEvents(new llama(), main);
+        }
         if(main.getConfig().getBoolean("magmacube", true)){
             pm.registerEvents(new magmacube(), main);
         }
         if(main.getConfig().getBoolean("mooshroom", true)){
             pm.registerEvents(new mooshroom(), main);
         }
+        if(main.getConfig().getBoolean("mule", true)){
+            pm.registerEvents(new mule(), main);
+        }
         if(main.getConfig().getBoolean("ocelot", true)){
             pm.registerEvents(new ocelot(), main);
+        }
+        if(main.getConfig().getBoolean("parrot", true)){
+            pm.registerEvents(new parrot(), main);
         }
         if(main.getConfig().getBoolean("pig", true)){
             pm.registerEvents(new pig(), main);
@@ -73,8 +94,14 @@ public class EventRegister {
         if(main.getConfig().getBoolean("pigzap", true)){
             pm.registerEvents(new pigzap(), main);
         }
+        if(main.getConfig().getBoolean("polarbear", true)){
+            pm.registerEvents(new polarbear(), main);
+        }
         if(main.getConfig().getBoolean("portal", true)){
             pm.registerEvents(new portal(), main);
+        }
+        if(main.getConfig().getBoolean("rabbit", true)){
+            pm.registerEvents(new rabbit(), main);
         }
         if(main.getConfig().getBoolean("sheep", true)){
             pm.registerEvents(new sheep(), main);

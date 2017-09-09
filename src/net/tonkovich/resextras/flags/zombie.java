@@ -15,13 +15,13 @@ public class zombie implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Zombie(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Zombie)
 		{
-			if (FlagPermissions.has("zombie", true))
+			if (fp.has("zombie", true))
 				return;
 			event.setCancelled(true);
 		}

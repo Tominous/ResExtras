@@ -14,13 +14,13 @@ public class squid implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Squid(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Squid)
 		{
-			if (FlagPermissions.has("squid", true))
+			if (fp.has("squid", true))
 				return;
 			event.setCancelled(true);
 		}

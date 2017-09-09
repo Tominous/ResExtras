@@ -15,13 +15,13 @@ public class skeleton implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Skeleton(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Skeleton)
 		{
-			if (FlagPermissions.has("skeleton", true))
+			if (fp.has("skeleton", true))
 				return;
 			event.setCancelled(true);
 		}

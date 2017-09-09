@@ -16,13 +16,13 @@ public class cavespider implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void CaveSpider(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof CaveSpider)
 		{
-			if (FlagPermissions.has("cavespider", true))
+			if (fp.has("cavespider", true))
 				return;
 			event.setCancelled(true);
 		}

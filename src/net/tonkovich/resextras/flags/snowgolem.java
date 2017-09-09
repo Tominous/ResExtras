@@ -15,13 +15,13 @@ public class snowgolem implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void SnowGolem(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Snowman)
 		{
-			if (FlagPermissions.has("snowgolem", true))
+			if (fp.has("snowgolem", true))
 				return;
 			event.setCancelled(true);
 		}

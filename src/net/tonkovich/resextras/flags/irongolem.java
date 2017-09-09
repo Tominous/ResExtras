@@ -15,13 +15,13 @@ public class irongolem implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void IronGolem(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof IronGolem)
 		{
-			if (FlagPermissions.has("irongolem", true))
+			if (fp.has("irongolem", true))
 				return;
 			event.setCancelled(true);
 		}

@@ -15,13 +15,13 @@ public class magmacube implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void MagmaCube(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof MagmaCube)
 		{
-			if (FlagPermissions.has("magmacube", true))
+			if (fp.has("magmacube", true))
 				return;
 			event.setCancelled(true);
 		}

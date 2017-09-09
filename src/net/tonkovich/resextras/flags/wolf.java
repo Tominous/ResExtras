@@ -15,13 +15,13 @@ public class wolf implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Wolf(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Wolf)
 		{
-			if (FlagPermissions.has("wolf", true))
+			if (fp.has("wolf", true))
 				return;
 			event.setCancelled(true);
 		}

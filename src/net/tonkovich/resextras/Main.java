@@ -25,10 +25,10 @@ public class Main extends JavaPlugin implements CommandExecutor {
     public static final String PLUGIN_NAME = "ResExtras";
     public static final String LOG_HEADER = "[" + PLUGIN_NAME + "] ";
 
-    public static String[] flagList = {"bat","blaze","blockdamage","cavespider","chicken","cow","eggs"
-										,"enderman","fishing","ghast","god","hunger","irongolem", "lightning"
-                                        , "magmacube", "mooshroom", "ocelot", "pig", "pigsaddle","pizap"
-    									, "portal", "sheep", "silverfish", "skeleton", "slime", "slimesplit"
+    public static String[] flagList = {"bat","blaze","blockdamage","cavespider","chicken","cow","donkey","eggs","elderguardian"
+										,"enderman","endermite","fishing","ghast","god","horse","hunger","irongolem", "lightning"
+                                        , "llama", "magmacube", "mooshroom", "mule", "ocelot","parrot", "pig", "pigsaddle","pizap"
+    									, "polarbear", "portal", "rabbit", "sheep", "silverfish", "skeleton", "slime", "slimesplit"
     									, "sneak", "snowgolem", "spider", "sprint", "squid", "villager", "witch"
                                         , "wolf", "zombie", "zombiepigmen"};
 	CommandLibrary cmdLibrary = new CommandLibrary();

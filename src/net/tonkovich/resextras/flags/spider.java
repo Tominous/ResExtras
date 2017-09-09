@@ -15,13 +15,13 @@ public class spider implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Spider(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Spider)
 		{
-			if (FlagPermissions.has("spider", true))
+			if (fp.has("spider", true))
 				return;
 			event.setCancelled(true);
 		}

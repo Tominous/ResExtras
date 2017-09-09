@@ -14,13 +14,13 @@ public class sheep implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Sheep(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Sheep)
 		{
-			if (FlagPermissions.has("sheep", true))
+			if (fp.has("sheep", true))
 				return;
 			event.setCancelled(true);
 		}

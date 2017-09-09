@@ -15,13 +15,13 @@ public class villager implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Villager(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Villager)
 		{
-			if (FlagPermissions.has("villager", true))
+			if (fp.has("villager", true))
 				return;
 			event.setCancelled(true);
 		}

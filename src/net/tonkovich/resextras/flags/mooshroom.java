@@ -14,13 +14,13 @@ public class mooshroom implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Mooshroom(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof MushroomCow)
 		{
-			if (FlagPermissions.has("mooshroom", true))
+			if (fp.has("mooshroom", true))
 				return;
 			event.setCancelled(true);
 		}

@@ -15,13 +15,13 @@ public class ghast implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Ghast(CreatureSpawnEvent event)
 	{
-		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
-		LivingEntity Entity = event.getEntity();
-		if (FlagPermissions == null)
+		FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
+		if (fp == null)
 			return;
+		LivingEntity Entity = event.getEntity();
 		if (Entity instanceof Ghast)
 		{
-			if (FlagPermissions.has("ghast", true))
+			if (fp.has("ghast", true))
 				return;
 			event.setCancelled(true);
 		}
