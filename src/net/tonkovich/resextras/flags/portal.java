@@ -18,9 +18,8 @@ public class portal implements Listener {
 		Location loc = event.getPlayer().getLocation();
 		if(event.isCancelled())
 			return;
-		Residence residence = new Residence();
-		ClaimedResidence res = residence.getResidenceManager().getByLoc(loc);
-		boolean resadmin = residence.isResAdminOn(player);
+		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(loc);
+		boolean resadmin = Residence.getInstance().isResAdminOn(player);
 		String playername = player.getName();
 		if(res!=null){
 			if(!res.getPermissions().playerHas(playername, "portal", true)&&!resadmin){

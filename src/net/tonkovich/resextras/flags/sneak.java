@@ -16,14 +16,13 @@ public class sneak implements Listener {
 		if(event.isCancelled())
 			return;
 		Player player = event.getPlayer();
-		Residence residence = new Residence();
 		if(!player.isSprinting() && (!player.isSneaking()))
 			return;
-		boolean resadmin = residence.isResAdminOn(player);
+		boolean resadmin = Residence.getInstance().isResAdminOn(player);
 		if (resadmin) {
 			return;
 		}
-		ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getPlayer().getLocation());
+		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getPlayer().getLocation());
 		String playername = player.getName();
 		if(res!=null) {
 			if(!res.getPermissions().playerHas(playername, "sneak", true) && player.isSneaking()) {

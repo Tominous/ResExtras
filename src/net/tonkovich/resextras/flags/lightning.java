@@ -13,8 +13,7 @@ public class lightning implements Listener {
 	public void Lightning(LightningStrikeEvent event){
 		if(event.isCancelled())
 			return;
-		Residence residence = new Residence();
-		ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getLightning().getLocation());
+		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getLightning().getLocation());
 		if(res!=null) {
 			if(!res.getPermissions().has("lightning", true)) {
 				event.setCancelled(true);

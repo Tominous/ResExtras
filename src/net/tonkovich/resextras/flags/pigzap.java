@@ -14,8 +14,7 @@ public class pigzap implements Listener {
     public void PiggyZap(PigZapEvent event){
         if(event.isCancelled())
             return;
-        Residence residence = new Residence();
-        ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getEntity().getLocation());
+        ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getEntity().getLocation());
         if(res!=null) {
             if(!res.getPermissions().has("pigzap", true)) {
                 event.setCancelled(true);

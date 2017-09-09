@@ -15,8 +15,7 @@ public class grow implements Listener {
     public void StructureGrow(StructureGrowEvent event){
         if(event.isCancelled())
             return;
-        Residence residence = new Residence();
-        ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getLocation());
+        ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getLocation());
         if(res!=null) {
             if(!res.getPermissions().has("grow", true)) {
                 event.setCancelled(true);
@@ -28,8 +27,7 @@ public class grow implements Listener {
     public void BlockGrow(BlockGrowEvent event){
         if(event.isCancelled())
             return;
-        Residence residence = new Residence();
-        ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getBlock().getLocation());
+        ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getBlock().getLocation());
         if(res!=null) {
             if(!res.getPermissions().has("grow", true)) {
                 event.setCancelled(true);
@@ -41,8 +39,7 @@ public class grow implements Listener {
     public void BlockGrowSpread(BlockSpreadEvent event){
         if(event.isCancelled())
             return;
-        Residence residence = new Residence();
-        ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getBlock().getLocation());
+        ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getBlock().getLocation());
         if(res!=null) {
             if(!res.getPermissions().has("grow", true)) {
                 event.setCancelled(true);

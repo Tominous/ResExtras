@@ -17,8 +17,7 @@ public class falldamage implements Listener {
 		if(event.isCancelled())
 			return;
 		Entity entity = event.getEntity();
-		Residence residence = new Residence();
-		ClaimedResidence res = residence.getResidenceManager().getByLoc(entity.getLocation());
+		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(entity.getLocation());
 		if(event.getCause() == DamageCause.FALL && event.getEntity() instanceof Player){
 			if(res!=null){
 				if(!res.getPermissions().has("falldamage", true)){

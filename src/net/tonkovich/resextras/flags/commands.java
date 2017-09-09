@@ -16,9 +16,8 @@ public class commands implements Listener {
 	public void Commands(PlayerCommandPreprocessEvent event){
 		Player player = event.getPlayer();
 		Location loc = event.getPlayer().getLocation();
-		Residence residence = new Residence();
-		boolean resadmin = residence.isResAdminOn(player);
-		ClaimedResidence res = residence.getResidenceManager().getByLoc(loc);
+		boolean resadmin = Residence.getInstance().isResAdminOn(player);
+		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(loc);
 		String playername = player.getName();
 		if(res!=null && !res.getPermissions().playerHas(playername, "commands", true)&&!resadmin){
 			event.setCancelled(true);

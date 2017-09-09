@@ -15,8 +15,7 @@ public class ocelot implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Ocelot(CreatureSpawnEvent event)
 	{
-		Residence residence = new Residence();
-		FlagPermissions FlagPermissions = residence.getPermsByLoc(event.getLocation());
+		FlagPermissions FlagPermissions = Residence.getInstance().getPermsByLoc(event.getLocation());
 		LivingEntity Entity = event.getEntity();
 		if (FlagPermissions == null)
 			return;

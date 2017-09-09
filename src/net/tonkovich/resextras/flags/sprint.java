@@ -17,14 +17,13 @@ public class sprint implements Listener {
 			return;
 		Player player = event.getPlayer();
 		String playername = player.getName();
-		Residence residence = new Residence();
-		boolean resadmin = residence.isResAdminOn(player);
+		boolean resadmin = Residence.getInstance().isResAdminOn(player);
 		if (resadmin) {
 			return;
 		}
 		if(!player.isSprinting() && (!player.isSneaking()))
 			return;
-		ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getPlayer().getLocation());
+		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getPlayer().getLocation());
 		if(res!=null) {
 			if(!res.getPermissions().playerHas(playername, "sprint", true) && player.isSprinting()) {
 				event.setCancelled(true);

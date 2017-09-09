@@ -24,9 +24,8 @@ public class god implements Listener {
 			Player player = ((Player) event.getEntity());
 			World world = player.getWorld();
 			String playername = player.getName();
-			Residence residence = new Residence();
 			Location location = player.getLocation();
-			ClaimedResidence res = residence.getResidenceManager().getByLoc(entity.getLocation());
+			ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(entity.getLocation());
 			if(event.getEntity() instanceof Player){
 				if(res!=null){
 					if(res.getPermissions().playerHas(playername, "god", false)){

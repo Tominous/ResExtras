@@ -16,9 +16,8 @@ public class fishing implements Listener {
 		if(event.isCancelled())
 			return;
 		Player player = event.getPlayer();
-		Residence residence = new Residence();
-		ClaimedResidence res = residence.getResidenceManager().getByLoc(event.getPlayer().getLocation());
-		boolean resadmin = residence.isResAdminOn(player);
+		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getPlayer().getLocation());
+		boolean resadmin = Residence.getInstance().isResAdminOn(player);
 		String playername = player.getName();
 		if(res!=null) {
 			if(!res.getPermissions().playerHas(playername, "fishing", true) && !resadmin) {
