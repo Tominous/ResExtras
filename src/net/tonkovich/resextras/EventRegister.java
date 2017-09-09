@@ -2,135 +2,135 @@ package net.tonkovich.resextras;
 
 import net.tonkovich.resextras.flags.*;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
 
-public class EventRegister extends JavaPlugin {
+public class EventRegister {
 
+    private Main main = Main.getInstance();
     public void start(PluginManager pm){
         /*
          * Run through each config item and enable events when true
          * It's ugly until I figure out a different way
          */
 
-        if(getConfig().getBoolean("bat", true)){
-            pm.registerEvents(new bat(), this);
+        if(main.getConfig().getBoolean("bat", true)){
+            pm.registerEvents(new bat(), main);
         }
-        if(getConfig().getBoolean("blaze", true)){
-            pm.registerEvents(new blaze(), this);
+        if(main.getConfig().getBoolean("blaze", true)){
+            pm.registerEvents(new blaze(), main);
         }
-        if(getConfig().getBoolean("blockdamage", true)){
-            pm.registerEvents(new blockdamage(), this);
+        if(main.getConfig().getBoolean("blockdamage", true)){
+            pm.registerEvents(new blockdamage(), main);
         }
-        if(getConfig().getBoolean("cavespider", true)){
-            pm.registerEvents(new cavespider(), this);
+        if(main.getConfig().getBoolean("cavespider", true)){
+            pm.registerEvents(new cavespider(), main);
         }
-        if(getConfig().getBoolean("chicken", true)){
-            pm.registerEvents(new chicken(), this);
+        if(main.getConfig().getBoolean("chicken", true)){
+            pm.registerEvents(new chicken(), main);
         }
-        if(getConfig().getBoolean("commands", true)){
-            pm.registerEvents(new commands(), this);
+        if(main.getConfig().getBoolean("commands", true)){
+            pm.registerEvents(new commands(), main);
         }
-        if(getConfig().getBoolean("cow", true)){
-            pm.registerEvents(new cow(), this);
+        if(main.getConfig().getBoolean("cow", true)){
+            pm.registerEvents(new cow(), main);
         }
-        if(getConfig().getBoolean("eggs", true)){
-            pm.registerEvents(new eggs(), this);
+        if(main.getConfig().getBoolean("eggs", true)){
+            pm.registerEvents(new eggs(), main);
         }
-        if(getConfig().getBoolean("enderman", true)){
-            pm.registerEvents(new enderman(), this);
+        if(main.getConfig().getBoolean("enderman", true)){
+            pm.registerEvents(new enderman(), main);
         }
-        if(getConfig().getBoolean("falldamage", true)){
-            pm.registerEvents(new falldamage(), this);
+        if(main.getConfig().getBoolean("falldamage", true)){
+            pm.registerEvents(new falldamage(), main);
         }
-        if(getConfig().getBoolean("fishing", true)){
-            pm.registerEvents(new fishing(), this);
+        if(main.getConfig().getBoolean("fishing", true)){
+            pm.registerEvents(new fishing(), main);
         }
-        if(getConfig().getBoolean("ghast", true)){
-            pm.registerEvents(new ghast(), this);
+        if(main.getConfig().getBoolean("ghast", true)){
+            pm.registerEvents(new ghast(), main);
         }
-        if(getConfig().getBoolean("god", true)){
-            pm.registerEvents(new god(), this);
+        if(main.getConfig().getBoolean("god", true)){
+            pm.registerEvents(new god(), main);
         }
-        if(getConfig().getBoolean("grow", true)){
-            pm.registerEvents(new grow(), this);
+        if(main.getConfig().getBoolean("grow", true)){
+            pm.registerEvents(new grow(), main);
         }
-        if(getConfig().getBoolean("hunger", true)){
-            pm.registerEvents(new hunger(), this);
+        if(main.getConfig().getBoolean("hunger", true)){
+            pm.registerEvents(new hunger(), main);
         }
-        if(getConfig().getBoolean("irongolem", true)){
-            pm.registerEvents(new irongolem(), this);
+        if(main.getConfig().getBoolean("irongolem", true)){
+            pm.registerEvents(new irongolem(), main);
         }
-        if(getConfig().getBoolean("lightning", true)){
-            pm.registerEvents(new lightning(), this);
+        if(main.getConfig().getBoolean("lightning", true)){
+            pm.registerEvents(new lightning(), main);
         }
-        if(getConfig().getBoolean("magmacube", true)){
-            pm.registerEvents(new magmacube(), this);
+        if(main.getConfig().getBoolean("magmacube", true)){
+            pm.registerEvents(new magmacube(), main);
         }
-        if(getConfig().getBoolean("mooshroom", true)){
-            pm.registerEvents(new mooshroom(), this);
+        if(main.getConfig().getBoolean("mooshroom", true)){
+            pm.registerEvents(new mooshroom(), main);
         }
-        if(getConfig().getBoolean("ocelot", true)){
-            pm.registerEvents(new ocelot(), this);
+        if(main.getConfig().getBoolean("ocelot", true)){
+            pm.registerEvents(new ocelot(), main);
         }
-        if(getConfig().getBoolean("pig", true)){
-            pm.registerEvents(new pig(), this);
+        if(main.getConfig().getBoolean("pig", true)){
+            pm.registerEvents(new pig(), main);
         }
-        if(getConfig().getBoolean("pigsaddle", true)){
-            pm.registerEvents(new pigsaddle(), this);
+        if(main.getConfig().getBoolean("pigsaddle", true)){
+            pm.registerEvents(new pigsaddle(), main);
         }
-        if(getConfig().getBoolean("pigzap", true)){
-            pm.registerEvents(new pigzap(), this);
+        if(main.getConfig().getBoolean("pigzap", true)){
+            pm.registerEvents(new pigzap(), main);
         }
-        if(getConfig().getBoolean("portal", true)){
-            pm.registerEvents(new portal(), this);
+        if(main.getConfig().getBoolean("portal", true)){
+            pm.registerEvents(new portal(), main);
         }
-        if(getConfig().getBoolean("shear", true)){
-            pm.registerEvents(new shear(), this);
+        if(main.getConfig().getBoolean("shear", true)){
+            pm.registerEvents(new shear(), main);
         }
-        if(getConfig().getBoolean("sheep", true)){
-            pm.registerEvents(new sheep(), this);
+        if(main.getConfig().getBoolean("sheep", true)){
+            pm.registerEvents(new sheep(), main);
         }
-        if(getConfig().getBoolean("silverfish", true)){
-            pm.registerEvents(new silverfish(), this);
+        if(main.getConfig().getBoolean("silverfish", true)){
+            pm.registerEvents(new silverfish(), main);
         }
-        if(getConfig().getBoolean("skeleton", true)){
-            pm.registerEvents(new skeleton(), this);
+        if(main.getConfig().getBoolean("skeleton", true)){
+            pm.registerEvents(new skeleton(), main);
         }
-        if(getConfig().getBoolean("slime", true)){
-            pm.registerEvents(new slime(), this);
+        if(main.getConfig().getBoolean("slime", true)){
+            pm.registerEvents(new slime(), main);
         }
-        if(getConfig().getBoolean("slimesplit", true)){
-            pm.registerEvents(new slimesplit(), this);
+        if(main.getConfig().getBoolean("slimesplit", true)){
+            pm.registerEvents(new slimesplit(), main);
         }
-        if(getConfig().getBoolean("sneak", true)){
-            pm.registerEvents(new sneak(), this);
+        if(main.getConfig().getBoolean("sneak", true)){
+            pm.registerEvents(new sneak(), main);
         }
-        if(getConfig().getBoolean("snowgolem", true)){
-            pm.registerEvents(new snowgolem(), this);
+        if(main.getConfig().getBoolean("snowgolem", true)){
+            pm.registerEvents(new snowgolem(), main);
         }
-        if(getConfig().getBoolean("spider", true)){
-            pm.registerEvents(new spider(), this);
+        if(main.getConfig().getBoolean("spider", true)){
+            pm.registerEvents(new spider(), main);
         }
-        if(getConfig().getBoolean("sprint", true)){
-            pm.registerEvents(new sprint(), this);
+        if(main.getConfig().getBoolean("sprint", true)){
+            pm.registerEvents(new sprint(), main);
         }
-        if(getConfig().getBoolean("squid", true)){
-            pm.registerEvents(new squid(), this);
+        if(main.getConfig().getBoolean("squid", true)){
+            pm.registerEvents(new squid(), main);
         }
-        if(getConfig().getBoolean("villager", true)){
-            pm.registerEvents(new villager(), this);
+        if(main.getConfig().getBoolean("villager", true)){
+            pm.registerEvents(new villager(), main);
         }
-        if(getConfig().getBoolean("witch", true)){
-            pm.registerEvents(new witch(), this);
+        if(main.getConfig().getBoolean("witch", true)){
+            pm.registerEvents(new witch(), main);
         }
-        if(getConfig().getBoolean("wolf", true)){
-            pm.registerEvents(new wolf(), this);
+        if(main.getConfig().getBoolean("wolf", true)){
+            pm.registerEvents(new wolf(), main);
         }
-        if(getConfig().getBoolean("zombie", true)){
-            pm.registerEvents(new zombie(), this);
+        if(main.getConfig().getBoolean("zombie", true)){
+            pm.registerEvents(new zombie(), main);
         }
-        if(getConfig().getBoolean("zombiepigmen", true)){
-            pm.registerEvents(new zombiepigmen(), this);
+        if(main.getConfig().getBoolean("zombiepigmen", true)){
+            pm.registerEvents(new zombiepigmen(), main);
         }
     }
 }

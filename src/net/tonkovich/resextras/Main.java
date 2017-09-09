@@ -1,5 +1,6 @@
 package net.tonkovich.resextras;
 
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -7,11 +8,20 @@ import com.bekvon.bukkit.residence.protection.FlagPermissions;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements CommandExecutor {
+
+    // Used to pass Main instance to other classes
+    private static Main instance;
+    public static Main getInstance(){
+        return instance;
+    }
+
     public static final String PLUGIN_NAME = "ResExtras";
     public static final String LOG_HEADER = "[" + PLUGIN_NAME + "] ";
 
@@ -27,17 +37,17 @@ public class Main extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onEnable() {
-
+        instance = this;
         log = Logger.getLogger("Minecraft");
         PluginManager pm = getServer().getPluginManager();
         Plugin p = pm.getPlugin("Residence");
         if(p!=null) {
             if(p.isEnabled()) {
                 pm.enablePlugin(p);
+                EventRegister callRegister = new EventRegister();
+                callRegister.start(pm);
+                loadDefaults(); // Load config
 				logInfo("Enabled");
-				loadDefaults(); // Load config
-				EventRegister callRegister = new EventRegister();
-				callRegister.start(pm);
 
                 // Add flags to residence
 				// TODO: Only add ones that are enabled
@@ -67,11 +77,8 @@ public class Main extends JavaPlugin implements CommandExecutor {
 
 
     public void loadDefaults(){
-    	/* TODO: Remove and replace with included config
-		 * then only create if not found
-		 */
-    	ConfigCreator config = new ConfigCreator();
-    	config.run(flagList);
+        ConfigCreator creator = new ConfigCreator();
+        creator.run(flagList);
 	}
 
 }

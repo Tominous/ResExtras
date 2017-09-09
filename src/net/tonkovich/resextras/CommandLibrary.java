@@ -13,7 +13,6 @@ public class CommandLibrary {
                 if (cmd.getName().equalsIgnoreCase("resextras")){
                     if (sender.hasPermission("ResExtras.help")){
                         sender.sendMessage(ChatColor.GOLD + "----------------" + ChatColor.BLUE + "[ResExtras] Help Menu" + ChatColor.GOLD + "----------------");
-                        sender.sendMessage(ChatColor.RED + "/ResExtras help" + ChatColor.GREEN + "     Displays help menu  ");
                         sender.sendMessage(ChatColor.RED + "/ResExtras version" + ChatColor.GREEN + "     Displays version Number  ");
                         sender.sendMessage(ChatColor.RED + "/ResExtras list" + ChatColor.GREEN + "     Displays flag list ");
                         sender.sendMessage(ChatColor.GOLD + "---------------------------------------------------");
@@ -29,7 +28,7 @@ public class CommandLibrary {
                 if(args[0].equalsIgnoreCase("list")){
                     if (sender.hasPermission("ResExtras.list")){
                         sender.sendMessage(ChatColor.BLUE + "[ResExtras]" + ChatColor.GREEN + " Flags");
-                        sender.sendMessage(ChatColor.WHITE + " " + flagList);
+                        sender.sendMessage(ChatColor.WHITE + " " + flagList.toString());
                     }
                 }
             }
