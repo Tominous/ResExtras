@@ -1,15 +1,15 @@
 package net.tonkovich.resextras;
 
-import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.bekvon.bukkit.residence.protection.FlagPermissions;
+import net.tonkovich.resextras.utils.CommandLibrary;
+import net.tonkovich.resextras.utils.ConfigCreator;
+import net.tonkovich.resextras.utils.EventRegister;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.Configuration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;

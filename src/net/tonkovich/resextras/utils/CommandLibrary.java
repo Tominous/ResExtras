@@ -1,4 +1,4 @@
-package net.tonkovich.resextras;
+package net.tonkovich.resextras.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

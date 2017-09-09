@@ -1,5 +1,6 @@
-package net.tonkovich.resextras;
+package net.tonkovich.resextras.utils;
 
+import net.tonkovich.resextras.Main;
 import net.tonkovich.resextras.flags.*;
 import org.bukkit.plugin.PluginManager;
 

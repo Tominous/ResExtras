@@ -1,5 +1,6 @@
-package net.tonkovich.resextras;
+package net.tonkovich.resextras.utils;
 
+import net.tonkovich.resextras.Main;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
 

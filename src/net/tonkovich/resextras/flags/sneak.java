@@ -27,8 +27,8 @@ public class sneak implements Listener {
 		if(res!=null) {
 			if(!res.getPermissions().playerHas(playername, "sneak", true) && player.isSneaking()) {
 				long currentTime = System.currentTimeMillis();
+				event.setCancelled(true);
 				if(currentTime%2000>=0 && currentTime%2000<=100){
-					event.setCancelled(true);
 					player.sendMessage(derpa + "You cannot sneak here!");
 					return;
 				}
