@@ -40,9 +40,6 @@ public class EventRegister {
         if(main.getConfig().getBoolean("enderman", true)){
             pm.registerEvents(new enderman(), main);
         }
-        if(main.getConfig().getBoolean("falldamage", true)){
-            pm.registerEvents(new falldamage(), main);
-        }
         if(main.getConfig().getBoolean("fishing", true)){
             pm.registerEvents(new fishing(), main);
         }
@@ -51,9 +48,6 @@ public class EventRegister {
         }
         if(main.getConfig().getBoolean("god", true)){
             pm.registerEvents(new god(), main);
-        }
-        if(main.getConfig().getBoolean("grow", true)){
-            pm.registerEvents(new grow(), main);
         }
         if(main.getConfig().getBoolean("hunger", true)){
             pm.registerEvents(new hunger(), main);

@@ -26,8 +26,8 @@ public class Main extends JavaPlugin implements CommandExecutor {
     public static final String LOG_HEADER = "[" + PLUGIN_NAME + "] ";
 
     public static String[] flagList = {"bat","blaze","blockdamage","cavespider","chicken","commands","cow","eggs"
-										,"enderman","falldamage","fishing","ghast","god","grow","hunger","irongolem"
-    									, "lightning", "magmacube", "mooshroom", "ocelot", "pig", "pigsaddle","pizap"
+										,"enderman","fishing","ghast","god","hunger","irongolem", "lightning"
+                                        , "magmacube", "mooshroom", "ocelot", "pig", "pigsaddle","pizap"
     									, "portal", "shear", "sheep", "silverfish", "skeleton", "slime", "slimesplit"
     									, "sneak", "snowgolem", "spider", "sprint", "squid", "villager", "witch", "wolf"
     									, "zombie", "zombiepigmen"};
