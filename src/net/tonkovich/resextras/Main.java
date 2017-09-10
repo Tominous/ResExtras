@@ -7,6 +7,7 @@ import com.bekvon.bukkit.residence.protection.FlagPermissions;
 import net.tonkovich.resextras.utils.CommandLibrary;
 import net.tonkovich.resextras.utils.ConfigCreator;
 import net.tonkovich.resextras.utils.EventRegister;
+import org.apache.commons.lang3.ArrayUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,12 +26,27 @@ public class Main extends JavaPlugin implements CommandExecutor {
     public static final String PLUGIN_NAME = "ResExtras";
     public static final String LOG_HEADER = "[" + PLUGIN_NAME + "] ";
 
-    public static String[] flagList = {"bat","blaze","blockdamage","cavespider","chicken","cow","donkey","eggs","elderguardian"
-										,"enderman","endermite","fishing","ghast","god","horse","hunger","irongolem", "lightning"
-                                        , "llama", "magmacube", "mooshroom", "mule", "ocelot","parrot", "pig", "pigsaddle","pizap"
-    									, "polarbear", "portal", "rabbit", "sheep", "silverfish", "skeleton", "slime", "slimesplit"
-    									, "sneak", "snowgolem", "spider", "sprint", "squid", "villager", "witch"
-                                        , "wolf", "zombie", "zombiepigmen"};
+    // Add nonMob flags here
+    public static String[] nonMobFlagList = {"blockdamage","eggs","fishing","god","hunger", "lightning", "pigsaddle"
+            ,"pizap","portal", "slimesplit", "sneak", "sprint"};
+
+    // Add mob flags here
+    public static String[] mobFlagList = {"bat", "blaze", "cavespider", "chicken", "cow", "donkey"
+            , "elderguardian", "enderman", "endermite", "ghast", "horse", "irongolem"
+            , "llama", "magmacube", "mooshroom", "mule", "ocelot", "parrot", "pig"
+            , "polarbear", "rabbit", "sheep", "silverfish", "skeleton", "slime"
+            , "snowgolem", "spider", "squid", "villager", "witch", "wolf", "zombie"
+            , "zombiepigmen"};
+
+    // Will hold all enabled flags with a max length of possible
+    public static String[] enabled = new String[mobFlagList.length];
+
+    // Complete List of all flags
+    public static String[] flagList = (String[]) ArrayUtils.addAll(mobFlagList,nonMobFlagList);
+
+    // Count of enabled array
+    int counter = 0;
+
 	CommandLibrary cmdLibrary = new CommandLibrary();
 
     private Logger log;
@@ -47,13 +63,23 @@ public class Main extends JavaPlugin implements CommandExecutor {
                 EventRegister callRegister = new EventRegister();
                 callRegister.start(pm);
                 loadDefaults(); // Load config
-				logInfo("Enabled");
 
-                // Add flags to residence
-				// TODO: Only add ones that are enabled
-                for(int i = 0; i < flagList.length; i++){
-                	FlagPermissions.addFlag(flagList[i]);
+                // Adds enabled nonMobFlags to residence
+                for(int i = 0; i < nonMobFlagList.length; i++){
+                    if(getConfig().getBoolean(nonMobFlagList[i], true)) {
+                        FlagPermissions.addFlag(nonMobFlagList[i]);
+                    }
 				}
+				// Adds enabled mobFlags and then puts them into an array
+                // for mob.class to run through and check only those
+				for(int i = 0; i < mobFlagList.length; i++){
+                    if(getConfig().getBoolean(mobFlagList[i], true)){
+                        FlagPermissions.addFlag(mobFlagList[i]);
+                        setEnabledFlag(mobFlagList[i]);
+                        counter++;
+                    }
+                }
+                logInfo("Enabled"); // Done
             }
         }
         else {
@@ -63,10 +89,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
     }
     public void onDisable(){
     	saveConfig();
-    }
-	
-    public void logInfo(String _message) {
-        log.log(Level.INFO,String.format("%s %s",LOG_HEADER,_message));
+    	counter = 0;
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
@@ -81,5 +104,16 @@ public class Main extends JavaPlugin implements CommandExecutor {
         creator.run(flagList);
 	}
 
+	// getter and setter for mob class
+    public String[] getEnabledFlags(){
+        return enabled;
+    }
+    public void setEnabledFlag(String item){
+        enabled[counter] = item;
+    }
+
+    public void logInfo(String _message) {
+        log.log(Level.INFO,String.format("%s %s",LOG_HEADER,_message));
+    }
 }
 
