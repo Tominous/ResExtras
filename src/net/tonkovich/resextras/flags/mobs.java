@@ -23,7 +23,7 @@ public class mobs implements Listener{
         EntityType entityType = event.getEntityType();
 
         for (int i = 0; i < flagList.length; i++) {
-            if (entityType.getName() == flagList[i]) {
+            if (entityType.getName().equalsIgnoreCase(flagList[i])) {
                 if (!fp.has(flagList[i], true)) {
                     event.setCancelled(true);
                 }
