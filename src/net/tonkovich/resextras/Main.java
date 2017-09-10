@@ -31,12 +31,12 @@ public class Main extends JavaPlugin implements CommandExecutor {
             ,"pizap","portal", "slimesplit", "sneak", "sprint"};
 
     // Add mob flags here
-    public static String[] mobFlagList = {"bat", "blaze", "cavespider", "chicken", "cow", "donkey"
-            , "elderguardian", "enderman", "endermite", "ghast", "horse", "irongolem"
-            , "llama", "magmacube", "mooshroom", "mule", "ocelot", "parrot", "pig"
-            , "polarbear", "rabbit", "sheep", "silverfish", "skeleton", "slime"
-            , "snowgolem", "spider", "squid", "villager", "witch", "wolf", "zombie"
-            , "zombiepigmen"};
+    public static String[] mobFlagList = {"bat", "blaze", "cave_spider", "chicken", "cow", "donkey"
+            , "elder_guardian", "enderman", "endermite", "falling_block", "ghast", "guardian", "horse", "villager_golem"
+            , "llama", "magma_cube", "mooshroom", "mule", "ocelot", "parrot", "pig"
+            , "polar_bear", "rabbit", "sheep", "silverfish", "skeleton","skeleton_horse", "slime"
+            , "snowman", "spider", "squid", "stray", "vex", "villager", "vindicator", "witch", "wither_skeleton"
+            , "wolf", "zombie", "zombie_horse", "zombie_pigman", "zombie_villager"};
 
     // Will hold all enabled flags with a max length of possible
     public static String[] enabled = new String[mobFlagList.length];
