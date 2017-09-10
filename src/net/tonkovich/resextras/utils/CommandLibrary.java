@@ -22,13 +22,17 @@ public class CommandLibrary {
             if (args.length == 1) {
                 if(args[0].equalsIgnoreCase("version")){
                     if (sender.hasPermission("ResExtras.version")){
-                        sender.sendMessage(ChatColor.BLUE + "[ResExtras]" + ChatColor.GREEN + " v2.0.5 ");
+                        sender.sendMessage(ChatColor.BLUE + "[ResExtras]" + ChatColor.GREEN + " Shiiit idk ");
                     }
                 }
                 if(args[0].equalsIgnoreCase("list")){
                     if (sender.hasPermission("ResExtras.list")){
+                        StringBuilder str = new StringBuilder();
+                        for(int i = 0; i < flagList.length; i++){
+                            str.append(flagList[i] + ", ");
+                        }
                         sender.sendMessage(ChatColor.BLUE + "[ResExtras]" + ChatColor.GREEN + " Flags");
-                        sender.sendMessage(ChatColor.WHITE + " " + flagList.toString());
+                        sender.sendMessage(ChatColor.WHITE + " " + str.toString());
                     }
                 }
             }
