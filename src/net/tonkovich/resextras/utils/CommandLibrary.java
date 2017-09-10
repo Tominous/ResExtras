@@ -22,7 +22,7 @@ public class CommandLibrary {
             if (args.length == 1) {
                 if(args[0].equalsIgnoreCase("version")){
                     if (sender.hasPermission("ResExtras.version")){
-                        sender.sendMessage(ChatColor.BLUE + "[ResExtras]" + ChatColor.GREEN + " Shiiit idk ");
+                        sender.sendMessage(ChatColor.BLUE + "[ResExtras]" + ChatColor.GREEN + " 3.0 ");
                     }
                 }
                 if(args[0].equalsIgnoreCase("list")){

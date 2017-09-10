@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.tonkovich</groupId>
 	<artifactId>ResExtras</artifactId>
-	<version>2.1.0-snapshot</version>
+	<version>3.0</version>
 	<name>ResExtras</name>
 	<build>
 		<sourceDirectory>src</sourceDirectory>

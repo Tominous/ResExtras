@@ -1,6 +1,6 @@
 name: ResExtras
 main: net.tonkovich.resextras.Main
-version: 2.0.5
+version: 3.0
 author: Tonkovich
 depend: [Residence]
 permissions:
