@@ -16,8 +16,7 @@ public class EventRegister {
         
         String[] nonMobFlagList = main.getNonMobFlagList();
 
-        Map<String, Listener> event = new HashMap<String, Listener>()
-        {{
+        Map<String, Listener> event = new HashMap<String, Listener>() {{
             // Add new events here
             put("mobs", new mobs());
             put("blockdamage", new blockdamage());

@@ -93,11 +93,10 @@ public class Main extends JavaPlugin implements CommandExecutor {
     	counter = 0;
     }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-    {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		cmdLibrary.run(sender, cmd, label, args, flagList); // Keeps main class clean
 		return true;
-	}
+    }
 
 
     private void loadDefaults(){
