@@ -17,7 +17,6 @@ public class hunger implements Listener {
 		if(res!=null) {
 			if(!res.getPermissions().has("hunger", true)) {
 				event.setCancelled(true);
-				return;
 			}
 		}
 	}

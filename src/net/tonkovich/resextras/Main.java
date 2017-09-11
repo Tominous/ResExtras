@@ -28,7 +28,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
 
     // Add nonMob flags here
     public static String[] nonMobFlagList = {"blockdamage","eggs","fishing","god","hunger", "lightning", "pigsaddle"
-            ,"pizap","portal", "slimesplit", "sneak", "sprint"};
+            ,"pigzap","portal", "slimesplit", "sneak", "sprint"};
 
     // Add mob flags here
     // for information see org.bukkit.entity.EntityType;
@@ -39,8 +39,8 @@ public class Main extends JavaPlugin implements CommandExecutor {
             , "snowman", "spider", "squid", "stray", "vex", "villager", "vindicator", "witch", "wither_skeleton"
             , "wolf", "zombie", "zombie_horse", "zombie_pigman", "zombie_villager"};
 
-    // Will hold all enabled flags with a max length of possible
-    public static String[] enabled = new String[mobFlagList.length];
+    // Will hold all enabled mobFlags with a max length of possible
+    public static String[] enabledMobs = new String[mobFlagList.length];
 
     // Complete List of all flags
     public static String[] flagList = (String[]) ArrayUtils.addAll(mobFlagList,nonMobFlagList);
@@ -66,17 +66,17 @@ public class Main extends JavaPlugin implements CommandExecutor {
                 loadDefaults(); // Load config
 
                 // Adds enabled nonMobFlags to residence
-                for(int i = 0; i < nonMobFlagList.length; i++){
-                    if(getConfig().getBoolean(nonMobFlagList[i], true)) {
-                        FlagPermissions.addFlag(nonMobFlagList[i]);
+                for(String item: nonMobFlagList){
+                    if(getConfig().getBoolean(item, true)) {
+                        FlagPermissions.addFlag(item);
                     }
 				}
 				// Adds enabled mobFlags and then puts them into an array
                 // for mob.class to run through and check only those
-				for(int i = 0; i < mobFlagList.length; i++){
-                    if(getConfig().getBoolean(mobFlagList[i], true)){
-                        FlagPermissions.addFlag(mobFlagList[i]);
-                        setEnabledFlag(mobFlagList[i]);
+				for(String item: mobFlagList){
+                    if(getConfig().getBoolean(item, true)){
+                        FlagPermissions.addFlag(item);
+                        setEnabledFlag(item);
                         counter++;
                     }
                 }
@@ -107,10 +107,14 @@ public class Main extends JavaPlugin implements CommandExecutor {
 
 	// getter and setter for mob class
     public String[] getEnabledFlags(){
-        return enabled;
+        return enabledMobs;
     }
     public void setEnabledFlag(String item){
-        enabled[counter] = item;
+        enabledMobs[counter] = item;
+    }
+
+    public String[] getNonMobFlagList() {
+        return nonMobFlagList;
     }
 
     public void logInfo(String _message) {

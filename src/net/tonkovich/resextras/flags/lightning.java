@@ -17,7 +17,6 @@ public class lightning implements Listener {
 		if(res!=null) {
 			if(!res.getPermissions().has("lightning", true)) {
 				event.setCancelled(true);
-				return;
 			}
 		}
 	}

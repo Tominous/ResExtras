@@ -37,7 +37,7 @@ public class god implements Listener {
 		}
 		catch (Exception ex)
 		{
-
+			ex.getStackTrace();
 		}
 	}
 }

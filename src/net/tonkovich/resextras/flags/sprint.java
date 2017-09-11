@@ -30,7 +30,6 @@ public class sprint implements Listener {
 				long currentTime = System.currentTimeMillis();
 				if(currentTime%2000>=0 && currentTime%2000<=100){
 					event.getPlayer().sendMessage(derpa + "You cannot sprint here!");
-					return;
 				}
 			}
 		}

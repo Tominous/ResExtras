@@ -30,7 +30,6 @@ public class sneak implements Listener {
 				event.setCancelled(true);
 				if(currentTime%2000>=0 && currentTime%2000<=100){
 					player.sendMessage(derpa + "You cannot sneak here!");
-					return;
 				}
 			}
 		}

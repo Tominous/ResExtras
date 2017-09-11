@@ -11,7 +11,7 @@ import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 public class pigzap implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void PiggyZap(PigZapEvent event){
+    public void PigZap(PigZapEvent event){
         if(event.isCancelled())
             return;
         ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getEntity().getLocation());
