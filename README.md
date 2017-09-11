@@ -4,7 +4,9 @@ This Bukkit/Spigot plugin is an extension to the already popular [Residence](htt
 ### Installation
 * Make sure [Residence](https://www.spigotmc.org/resources/residence-1-7-10-up-to-1-12.11480/) is installed
 * Simple drag and drop
-* Edit config.yml for efficiency and needs
+* Edit config.yml if need be
+* Add flags to flags.yml in Residence
+    * Easiest way is to copy ResExtras config and paste it into flags.yml
 * Done
 
 ### What does it do?
@@ -24,5 +26,5 @@ just turn spider to false.
         Slime           Slimesplit      Sneak
         SnowGolem       Spider          Sprint
         Squid           Villager        Witch
-        Wolf            Zombie          ZombiePigMen    
+        Wolf            Zombie          ZombiePigMen    ...etc
         
