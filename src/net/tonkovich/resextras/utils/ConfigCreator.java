@@ -12,9 +12,9 @@ public class ConfigCreator {
         File cFile = new File("plugins/ResExtras/config.yml");
         Configuration config = YamlConfiguration.loadConfiguration(cFile);
 
-        for (int i = 0; i < flagList.length; i++) {
-            if (!config.contains(flagList[i])) { // Config value not detected, so add
-                main.getConfig().set(flagList[i], true);
+        for (String item: flagList) {
+            if (!config.contains(item)) { // Config value not detected, so add
+                main.getConfig().set(item, true);
             }
         }
         config.options().copyDefaults(true);

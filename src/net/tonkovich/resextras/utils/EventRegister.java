@@ -36,7 +36,6 @@ public class EventRegister {
         for(String item: nonMobFlagList){
             if(main.getConfig().getBoolean(item, true)){
                 pm.registerEvents(event.get(item), main);
-                System.out.println("success" + " on " + item);
             }
         }
         // Register all mobs

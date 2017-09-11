@@ -23,16 +23,16 @@ public class Main extends JavaPlugin implements CommandExecutor {
         return instance;
     }
 
-    public static final String PLUGIN_NAME = "ResExtras";
-    public static final String LOG_HEADER = "[" + PLUGIN_NAME + "] ";
+    private static final String PLUGIN_NAME = "ResExtras";
+    private static final String LOG_HEADER = "[" + PLUGIN_NAME + "]";
 
     // Add nonMob flags here
-    public static String[] nonMobFlagList = {"blockdamage","eggs","fishing","god","hunger", "lightning", "pigsaddle"
+    private static String[] nonMobFlagList = {"blockdamage","eggs","fishing","god","hunger", "lightning", "pigsaddle"
             ,"pigzap","portal", "slimesplit", "sneak", "sprint"};
 
     // Add mob flags here
     // for information see org.bukkit.entity.EntityType;
-    public static String[] mobFlagList = {"bat", "blaze", "cave_spider", "chicken", "cow", "donkey"
+    private static String[] mobFlagList = {"bat", "blaze", "cave_spider", "chicken", "cow", "donkey"
             , "elder_guardian", "enderman", "endermite", "falling_block", "ghast", "guardian", "horse", "villager_golem"
             , "llama", "magma_cube", "mooshroom", "mule", "ocelot", "parrot", "pig"
             , "polar_bear", "rabbit", "sheep", "silverfish", "skeleton","skeleton_horse", "slime"
@@ -40,15 +40,15 @@ public class Main extends JavaPlugin implements CommandExecutor {
             , "wolf", "zombie", "zombie_horse", "zombie_pigman", "zombie_villager"};
 
     // Will hold all enabled mobFlags with a max length of possible
-    public static String[] enabledMobs = new String[mobFlagList.length];
+    private static String[] enabledMobs = new String[mobFlagList.length];
 
     // Complete List of all flags
-    public static String[] flagList = (String[]) ArrayUtils.addAll(mobFlagList,nonMobFlagList);
+    private static String[] flagList = (String[]) ArrayUtils.addAll(mobFlagList,nonMobFlagList);
 
     // Count of enabled array
-    int counter = 0;
+    private int counter = 0;
 
-	CommandLibrary cmdLibrary = new CommandLibrary();
+    private CommandLibrary cmdLibrary = new CommandLibrary();
 
     private Logger log;
 
@@ -66,7 +66,6 @@ public class Main extends JavaPlugin implements CommandExecutor {
                 loadDefaults(); // Load config
 
                 // Adds enabled nonMobFlags to residence
-
                 for(String item: nonMobFlagList){
                     if(getConfig().getBoolean(item, true)) {
                         FlagPermissions.addFlag(item);
@@ -101,7 +100,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
 	}
 
 
-    public void loadDefaults(){
+    private void loadDefaults(){
         ConfigCreator creator = new ConfigCreator();
         creator.run(flagList);
 	}
@@ -110,7 +109,8 @@ public class Main extends JavaPlugin implements CommandExecutor {
     public String[] getEnabledFlags(){
         return enabledMobs;
     }
-    public void setEnabledFlag(String item){
+
+    private void setEnabledFlag(String item){
         enabledMobs[counter] = item;
     }
 
@@ -118,7 +118,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
         return nonMobFlagList;
     }
 
-    public void logInfo(String _message) {
+    private void logInfo(String _message) {
         log.log(Level.INFO,String.format("%s %s",LOG_HEADER,_message));
     }
 }

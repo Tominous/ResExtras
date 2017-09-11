@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 
 public class CommandLibrary {
-    public boolean run(CommandSender sender, Command cmd, String label, String[] args, String[] flagList){
+    public void run(CommandSender sender, Command cmd, String label, String[] args, String[] flagList){
         if (sender instanceof Player) {
             if (args.length == 0) {
                 if (cmd.getName().equalsIgnoreCase("resextras")){
@@ -28,16 +28,14 @@ public class CommandLibrary {
                 if(args[0].equalsIgnoreCase("list")){
                     if (sender.hasPermission("ResExtras.list")){
                         StringBuilder str = new StringBuilder();
-                        for(int i = 0; i < flagList.length; i++){
-                            str.append(flagList[i] + ", ");
+                        for(String item: flagList){
+                            str.append(item + ", ");
                         }
                         sender.sendMessage(ChatColor.BLUE + "[ResExtras]" + ChatColor.GREEN + " Flags");
                         sender.sendMessage(ChatColor.WHITE + " " + str.toString());
                     }
                 }
             }
-            return true;
         }
-        return true;
     }
 }
