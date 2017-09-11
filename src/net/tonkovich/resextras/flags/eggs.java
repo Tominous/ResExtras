@@ -16,9 +16,8 @@ public class eggs implements Listener {
 		Player player = event.getPlayer();
 		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getPlayer().getLocation());
 		boolean resadmin = Residence.getInstance().isResAdminOn(player);
-		String playername = player.getName();
 		if(res!=null) {
-			if(!res.getPermissions().playerHas(playername, "eggs", true) && !resadmin) {
+			if(!res.getPermissions().playerHas(player.getName(), "eggs", true) && !resadmin) {
 				event.setHatching(false);
 				event.getPlayer().sendMessage(derpa + "You cannot throw eggys!");
 			}

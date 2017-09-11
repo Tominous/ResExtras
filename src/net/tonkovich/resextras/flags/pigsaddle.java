@@ -15,15 +15,12 @@ import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 public class pigsaddle implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void PiggySaddle(PlayerInteractEntityEvent event){
-		if(event.isCancelled())
-			return;
 		Entity pig = event.getRightClicked();
 		Player player = event.getPlayer();
 		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getPlayer().getLocation());
 		boolean resadmin = Residence.getInstance().isResAdminOn(player);
-		String playername = player.getName();
 		if(res!=null) {
-			if(!res.getPermissions().playerHas(playername, "pigsaddle", true)&&!resadmin) {
+			if(!res.getPermissions().playerHas(player.getName(), "pigsaddle", true)&&!resadmin) {
 				if(pig.getType() == EntityType.PIG){
 					event.setCancelled(true);
 					event.getPlayer().sendMessage(derpa + "You cannot use a saddle here!");

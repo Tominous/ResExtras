@@ -66,6 +66,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
                 loadDefaults(); // Load config
 
                 // Adds enabled nonMobFlags to residence
+
                 for(String item: nonMobFlagList){
                     if(getConfig().getBoolean(item, true)) {
                         FlagPermissions.addFlag(item);
@@ -73,7 +74,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
 				}
 				// Adds enabled mobFlags and then puts them into an array
                 // for mob.class to run through and check only those
-				for(String item: mobFlagList){
+                for(String item: mobFlagList){
                     if(getConfig().getBoolean(item, true)){
                         FlagPermissions.addFlag(item);
                         setEnabledFlag(item);

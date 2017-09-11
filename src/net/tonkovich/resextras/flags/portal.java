@@ -14,15 +14,14 @@ import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 public class portal implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Portal(PlayerPortalEvent event){
-		Player player = event.getPlayer();
-		Location loc = event.getPlayer().getLocation();
 		if(event.isCancelled())
 			return;
+		Player player = event.getPlayer();
+		Location loc = event.getPlayer().getLocation();
 		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(loc);
 		boolean resadmin = Residence.getInstance().isResAdminOn(player);
-		String playername = player.getName();
 		if(res!=null){
-			if(!res.getPermissions().playerHas(playername, "portal", true)&&!resadmin){
+			if(!res.getPermissions().playerHas(player.getName(), "portal", true)&&!resadmin){
 				event.setCancelled(true);
 				event.getPlayer().sendMessage(derpa + "You cannot use portals here!");
 			}

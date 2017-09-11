@@ -13,8 +13,6 @@ import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 public class sprint implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void Sprint(PlayerMoveEvent event){
-		if(event.isCancelled())
-			return;
 		Player player = event.getPlayer();
 		String playername = player.getName();
 		boolean resadmin = Residence.getInstance().isResAdminOn(player);

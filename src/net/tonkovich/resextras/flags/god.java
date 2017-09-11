@@ -17,20 +17,16 @@ import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 public class god implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void God(EntityDamageEvent event){
-		if(event.isCancelled())
-			return;
 		try {
 			Entity entity = event.getEntity();
 			Player player = ((Player) event.getEntity());
-			World world = player.getWorld();
-			String playername = player.getName();
 			Location location = player.getLocation();
 			ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(entity.getLocation());
 			if(event.getEntity() instanceof Player){
 				if(res!=null){
-					if(res.getPermissions().playerHas(playername, "god", false)){
+					if(res.getPermissions().playerHas(player.getName(), "god", false)){
 						event.setCancelled(true);
-						world.playEffect(location, Effect.MOBSPAWNER_FLAMES, 4);
+						player.getWorld().playEffect(location, Effect.MOBSPAWNER_FLAMES, 4);
 					}
 				}
 			}

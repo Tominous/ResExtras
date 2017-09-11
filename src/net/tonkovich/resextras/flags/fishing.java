@@ -13,14 +13,11 @@ import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 public class fishing implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void Fishing(PlayerFishEvent event){
-		if(event.isCancelled())
-			return;
 		Player player = event.getPlayer();
 		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getPlayer().getLocation());
 		boolean resadmin = Residence.getInstance().isResAdminOn(player);
-		String playername = player.getName();
 		if(res!=null) {
-			if(!res.getPermissions().playerHas(playername, "fishing", true) && !resadmin) {
+			if(!res.getPermissions().playerHas(player.getName(), "fishing", true) && !resadmin) {
 				event.setCancelled(true);
 				event.getPlayer().sendMessage(derpa + "You cannot fish here!");
 			}
