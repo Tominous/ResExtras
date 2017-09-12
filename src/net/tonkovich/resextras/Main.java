@@ -33,7 +33,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
     // Add mob flags here
     // for information see org.bukkit.entity.EntityType;
     private static String[] mobFlagList = {"bat", "blaze", "cave_spider", "chicken", "cow", "donkey"
-            , "elder_guardian", "enderman", "endermite", "falling_block", "ghast", "guardian", "horse", "villager_golem"
+            , "elder_guardian", "enderman", "endermite", "ghast", "guardian", "horse", "villager_golem"
             , "llama", "magma_cube", "mooshroom", "mule", "ocelot", "parrot", "pig"
             , "polar_bear", "rabbit", "sheep", "silverfish", "skeleton","skeleton_horse", "slime"
             , "snowman", "spider", "squid", "stray", "vex", "villager", "vindicator", "witch", "wither_skeleton"
