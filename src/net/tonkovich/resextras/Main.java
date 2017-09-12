@@ -27,7 +27,7 @@ public class Main extends JavaPlugin implements CommandExecutor {
     private static final String LOG_HEADER = "[" + PLUGIN_NAME + "]";
 
     // Add nonMob flags here
-    private static String[] nonMobFlagList = {"blockdamage","eggs","fishing","god","hunger", "lightning", "pigsaddle"
+    private static String[] nonMobFlagList = {"blockdamage","fishing","god","hunger", "lightning", "pigsaddle"
             ,"pigzap","portal", "slimesplit", "sneak", "sprint"};
 
     // Add mob flags here

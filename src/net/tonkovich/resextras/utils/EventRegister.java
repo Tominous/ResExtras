@@ -20,7 +20,6 @@ public class EventRegister {
             // Add new events here
             put("mobs", new mobs());
             put("blockdamage", new blockdamage());
-            put("eggs", new eggs());
             put("fishing", new fishing());
             put("god", new god());
             put("hunger", new hunger());
