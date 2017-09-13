@@ -27,12 +27,12 @@ public class Main extends JavaPlugin implements CommandExecutor {
     private static final String LOG_HEADER = "[" + PLUGIN_NAME + "]";
 
     // Add nonMob flags here
-    private static String[] nonMobFlagList = {"blockdamage","fishing","god","hunger", "lightning", "pigsaddle"
+    private static String[] nonMobFlagList = {"blockdamage","fallingblocks","fishing","god","hunger", "lightning", "pigsaddle"
             ,"pigzap","portal", "slimesplit", "sneak", "sprint"};
 
     // Add mob flags here
     // for information see org.bukkit.entity.EntityType;
-    private static String[] mobFlagList = {"bat", "blaze", "cave_spider", "chicken", "cow", "donkey"
+    private static String[] mobFlagList = {"bat", "blaze", "cave_spider", "chicken", "cow","creeperspawn", "donkey"
             , "elder_guardian", "enderman", "endermite", "ghast", "guardian", "horse", "villager_golem"
             , "llama", "magma_cube", "mooshroom", "mule", "ocelot", "parrot", "pig"
             , "polar_bear", "rabbit", "sheep", "silverfish", "skeleton","skeleton_horse", "slime"

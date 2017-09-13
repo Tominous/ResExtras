@@ -17,6 +17,13 @@ public class mobs implements Listener{
 
         String[] flagList = main.getEnabledFlags();
 
+        // Work around residence creeper flag
+        for (int i = 0; i < flagList.length; i++ ) {
+            if(flagList[i].equalsIgnoreCase("creeperspawn")){
+                flagList[i] = "creeper"; // Change for entity type
+            }
+        }
+
         FlagPermissions fp = Residence.getInstance().getPermsByLoc(event.getLocation());
         if (fp == null)
             return;

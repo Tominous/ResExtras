@@ -14,7 +14,8 @@ public class hunger implements Listener {
 		ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(event.getEntity().getLocation());
 		if(res!=null) {
 			if(!res.getPermissions().has("hunger", true)) {
-				event.setCancelled(true);
+				int current = event.getFoodLevel() + 1;
+				event.setFoodLevel(current);
 			}
 		}
 	}
